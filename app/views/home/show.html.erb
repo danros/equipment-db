@@ -1,1 +1,6 @@
-<h1>Index</h1>
+<h1>All Equipment</h1>
+<ul>
+  <% @page.device_rows.each do |device_row| %>
+    <% render :partial => 'device_row', :object => device_row %>
+  <% end %>
+</ul>
