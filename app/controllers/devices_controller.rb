@@ -2,7 +2,6 @@ class DevicesController < ApplicationController
   before_filter :require_authentication
 
   def create
-    logger.info params.inspect
     device = Device.create(params[:device])
     if device.valid?
       redirect_to device_path(device), :status => 303
