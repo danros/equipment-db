@@ -1,4 +1,6 @@
 EquipmentDb::Application.routes.draw do
+  get "home/index"
+
   resources :devices
 
   # The priority is based upon order of creation:
