@@ -3,7 +3,6 @@ class HomeController < ApplicationController
 
   def show
     devices = Device.find(:all)
-    logger.info(devices.inspect)
     @page = PageModels::Home::Show.new(devices)
   end
 end
