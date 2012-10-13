@@ -1,7 +1,7 @@
 <%= form_tag(sessions_path, :method => 'post') do %>
-  <%= label_tag(:session, :username, "Username:") %>
-  <%= text_field_tag(:session, :username) %>
-  <%= label_tag(:session, :password, "Password:") %>
-  <%= password_field_tag(:session, :password) %>
+  <%= label(:session, :username, "Username:") %>
+  <%= text_field(:session, :username) %>
+  <%= label(:session, :password, "Password:") %>
+  <%= password_field(:session, :password) %>
   <%= submit_tag %>
 <% end %>
