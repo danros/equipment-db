@@ -11,6 +11,9 @@ gem 'pg'
 group :development, :test do
   # In production we'll use Postgres but for development/testing using sqlite3 is easier
   gem 'sqlite3'
+
+  # Use the rspec framework for TDD
+  gem 'rspec-rails'
 end
 
 # Gems used only for assets and not required
@@ -29,6 +32,9 @@ gem 'jquery-rails'
 
 # The Twitter 'bootstrap' CSS framework. The best way to be web 2.0 compliant.
 gem 'bootstrap-sass'
+
+# Annotate models with the DB schema
+gem 'annotate', group: :development
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
