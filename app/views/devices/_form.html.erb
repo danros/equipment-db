@@ -1,5 +1,6 @@
 <%= form_tag(devices_path, :method => 'post') do %>
+  <legend>Add a new device</legend>
   <%= label(:device, :name, "Name:") %>
   <%= text_field(:device, :name) %>
-  <%= submit_tag %>
+  <button type="submit" class="btn">Submit</button>
 <% end %>

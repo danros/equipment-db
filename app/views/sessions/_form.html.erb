@@ -1,7 +1,9 @@
 <%= form_tag(sessions_path, :method => 'post') do %>
+  <legend>Sign in</legend>
   <%= label(:session, :username, "Username:") %>
   <%= text_field(:session, :username) %>
   <%= label(:session, :password, "Password:") %>
   <%= password_field(:session, :password) %>
-  <%= submit_tag %>
+  <span class="help-block">If you don't yet have an account, or if you've forgotten your username or password, please email <a href="mailto:foo@bar.com">foo@bar.com</a></span>
+  <button type="submit" class="btn">Sign in</button>
 <% end %>
