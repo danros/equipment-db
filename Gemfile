@@ -27,6 +27,9 @@ end
 
 gem 'jquery-rails'
 
+# The Twitter 'bootstrap' CSS framework. The best way to be web 2.0 compliant.
+gem 'bootstrap-sass'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
