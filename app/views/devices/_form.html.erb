@@ -1,0 +1,5 @@
+<%= form_tag(devices_path, :method => 'post') do %>
+  <%= label(:device, :name, "Name:") %>
+  <%= text_field(:device, :name) %>
+  <%= submit_tag %>
+<% end %>
