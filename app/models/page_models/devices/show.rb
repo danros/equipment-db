@@ -5,17 +5,21 @@ module PageModels
         @device = device
       end
 
+      def name
+        @device.name
+      end
+
       def reference_url
-        'Reference URL'
+        '(reference URL)'
       end
 
       def status
-        'Status'
+        '(status)'
       end
 
-      def title
-        'Title'
-      end
+      def tag
+        '(tag)'
+      end 
     end
   end
 end

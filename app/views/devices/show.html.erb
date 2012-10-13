@@ -1,3 +1,8 @@
-<h1><%= @page.title %></h1>
-<p><%= @page.status %></p>
-<p><a href="<%= @page.reference_url %>"><%= @page.reference_url %></a></p>
+<ul class="breadcrumb">
+  <li><a href="/">All devices</a></li>
+  <li class="active"><%= @page.name %></li>
+</ul>
+<h1><%= @page.name %></h1>
+<p><strong>Status:</strong> <%= @page.status %></p>
+<p><strong>Tag:</strong> <%= @page.status %></p>
+<p><strong>More information:</strong> <a href="<%= @page.reference_url %>"><%= @page.reference_url %></a></p>
