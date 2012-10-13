@@ -6,7 +6,6 @@ module PageModels
       end
 
       def device_rows
-      	logger.info(@devices.inspect)
         @device_rows ||= @devices.map{|device| DeviceRow.new(device)}
       end
     end
