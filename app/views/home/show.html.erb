@@ -1,7 +1,16 @@
 <h1>All Equipment</h1>
 <table class="table">
-  <% @page.device_rows.each do |device_row| %>
-    <%= render :partial => 'device_row', :object => device_row %>
-  <% end %>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Tag</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @page.device_rows.each do |device_row| %>
+      <%= render :partial => 'device_row', :object => device_row %>
+    <% end %>
+  </tbody>
 </table>
 <p><a href="<%= new_device_path %>" class="btn">Add a device</a></p>
