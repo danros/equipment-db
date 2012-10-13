@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   private
 
   def require_authentication
-    render :text => 'Forbidden!', :status => 403 unless session[:user_id]
+    render :forbidden unless session[:user_id]
   end
 end
