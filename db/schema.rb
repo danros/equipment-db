@@ -11,16 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013215620) do
+ActiveRecord::Schema.define(:version => 20121013223706) do
 
   create_table "asset_tags", :force => true do |t|
     t.string   "code"
     t.boolean  "active"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "device_id"
   end
-
-  add_index "asset_tags", ["code"], :name => "index_asset_tags_on_code", :unique => true
 
   create_table "devices", :force => true do |t|
     t.text     "name"
@@ -33,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20121013215620) do
     t.string   "email"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "device_id"
   end
 
   add_index "owners", ["email"], :name => "index_owners_on_email", :unique => true

@@ -5,8 +5,9 @@
 #  id         :integer          not null, primary key
 #  code       :string(255)
 #  active     :boolean
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  created_at :datetime
+#  updated_at :datetime
+#  device_id  :integer
 #
 
 require 'spec_helper'
@@ -19,6 +20,7 @@ describe AssetTag do
   # The basic invariants of the test tag.
   it { should respond_to(:code) }
   it { should respond_to(:active) }
+  it { should respond_to(:device_id) }
   it { should be_valid }
 
   describe "when code is not present" do
