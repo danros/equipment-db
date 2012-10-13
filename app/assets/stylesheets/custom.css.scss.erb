@@ -1,0 +1,18 @@
+// Add Bootstrap customisation here. For example:
+//
+//  $bodyBackground: red;
+
+@import "bootstrap";
+
+body {
+  padding-top: $navbarHeight + $baseLineHeight;
+}
+
+// add a makespace logo to the left of the title
+.brand {
+  padding-left: (2.0 * $navbarHeight) + 10px !important;
+  background-image: url(<%= asset_path 'makespace_logo_40px.png' %>);
+  background-size: auto $navbarHeight;
+  background-repeat: no-repeat;
+  background-position: $gridGutterWidth 0;
+}
