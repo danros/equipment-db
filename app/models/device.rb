@@ -14,4 +14,5 @@ class Device < ActiveRecord::Base
   validates :name, presence: true
 
   has_many :asset_tags
+  has_many :owners
 end

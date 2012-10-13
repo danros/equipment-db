@@ -18,6 +18,7 @@ describe Device do
   # The basic invariants of the test tag.
   it { should respond_to(:name) }
   it { should respond_to(:asset_tags) }
+  it { should respond_to(:owners) }
   it { should be_valid }
 
   describe "when name is not present" do
