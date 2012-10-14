@@ -2,6 +2,10 @@ module PageModels
   module Devices
     module Common
       class Form
+      	def self.model_name
+	  'Device'
+        end
+
         def initialize(device = nil)
           @device = device
         end
