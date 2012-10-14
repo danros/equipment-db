@@ -8,7 +8,7 @@ $navbarBackground: hsl(hue($makespaceGreen), 100%, 95%);
 @import "bootstrap";
 
 $footerBackground: hsl(hue($makespaceOrange), 100%, 99%);
-$footerHighlight: darken($footerBackground, 5%);
+$footerHighlight: hsl(hue($makespaceOrange), 100%, 95%);
 
 $headerSkip: $baseLineHeight;
 $footerSkip: $baseLineHeight;
@@ -64,7 +64,7 @@ html, body { height: 100%; }
 
 footer {
   @include gradient($footerHighlight, $footerBackground);
-  @include box-shadow(inset, 0, 2px, 2px, rgba(0, 0, 0, 0.075));
+  @include box-shadow(inset, 0, 2px, 2px, rgba(0, 0, 0, 0.1));
 
   a {
     color: $navbarLinkColor;
