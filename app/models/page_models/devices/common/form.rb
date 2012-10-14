@@ -22,6 +22,10 @@ module PageModels
           @device && @device.name
         end
 
+	def reference_url
+	  @device && @device.reference_url
+	end
+
         def status_id
           @device && @device.status_id
         end

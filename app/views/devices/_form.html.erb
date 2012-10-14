@@ -11,5 +11,8 @@
       <option value="<%= v[1] %>"<%= ' selected="selected"' if v[1] == form.status_id %>><%= v[0] %></option>
     <% end %>
   </select>
+  <label for="device_reference_url">Reference URL:</label>
+  <input type="text" id="device_reference_url" name="device[reference_url]" value="<%= form.reference_url %>">
+  <span class="help-block">Please create a page on the Makespace wiki for the device and reference it here.</span>
   <p><button type="submit" class="btn">Submit</button><a class="btn" href="/">Cancel</a></p>
 </form>

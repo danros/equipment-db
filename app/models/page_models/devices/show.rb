@@ -14,7 +14,7 @@ module PageModels
       end
 
       def reference_url
-        '(reference URL)'
+        @device.reference_url || '(not set}'
       end
 
       def status
