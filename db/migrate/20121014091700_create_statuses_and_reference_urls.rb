@@ -1,4 +1,4 @@
-class CreateDevices < ActiveRecord::Migration
+class CreateStatusesAndReferenceUrls < ActiveRecord::Migration
   def up
     create_table :statuses do |t|
       t.text :name
