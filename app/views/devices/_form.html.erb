@@ -2,5 +2,12 @@
   <legend>Add a new device</legend>
   <%= label(:device, :name, "Name:") %>
   <%= text_field(:device, :name) %>
+  <%= label(:device, :status, "Status:") %>
+  <%= select(:device, :status, options_for_select([['Working', 1], ['B0rked', 2]]])) %>
+  <%= label(:device, :tag, "Tag:") %>
+  <%= text_field(:device, :tag) %>
+  <%= label(:device, :reference_url, "Reference URL:") %>
+  <%= text_field(:device, :refrerence_url) %>
+  <span class="help-block">Please create a page on the <a href="http://makespace.org/wiki">Makespace wiki</a> and reference it here. This can be used for a fuller description of the device, links to technical information, relevant software, etc.</span>
   <p><button type="submit" class="btn">Submit</button><a class="btn" href="/">Cancel</a></p>
 <% end %>
