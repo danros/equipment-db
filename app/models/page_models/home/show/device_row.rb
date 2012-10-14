@@ -6,21 +6,31 @@ module PageModels
           @device = device
         end
 
+	def highlight_style
+          if @device.status && (@device.status.name == 'Inoperable')
+            'error'
+          elsif @device.status && (@device.status.name == 'Damaged')
+            'warning'
+          else
+            nil
+          end
+	end
+
 	def name
 	  @device.name
-	end 
+	end
 
 	def path
           "/devices/#{@device.id}"
 	end
-	
+
 	def status
           @device.status ? @device.status.name : '(not set)'
-	end 
+	end
 
 	def tag
 	  '(tag)'
-	end 
+	end
       end
     end
   end
