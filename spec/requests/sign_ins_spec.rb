@@ -45,4 +45,14 @@ describe "after signing in incorrectly" do
   it "the sign in link is kept" do
     page.should have_link('Sign in', href: new_session_path)
   end
+
+  it "an error is shown" do
+    page.should have_selector('div.alert.alert-error', text: 'incorrect')
+  end
+
+  it "an error is shown once" do
+    page.should have_selector('div.alert.alert-error', text: 'incorrect')
+    visit root_path
+    page.should_not have_selector('div.alert.alert-error', text: 'incorrect')
+  end
 end

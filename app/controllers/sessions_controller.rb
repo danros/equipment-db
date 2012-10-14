@@ -7,6 +7,8 @@ class SessionsController < ApplicationController
       session[:user_id] = 1
       redirect_to root_url, :status => 303
     end
+
+    flash.now[:error] = 'You entered an incorrect username or password'
   end
 
   def destroy
