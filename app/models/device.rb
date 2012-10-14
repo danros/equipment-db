@@ -9,7 +9,7 @@
 #
 
 class Device < ActiveRecord::Base
-  attr_accessible :name, :tag
+  attr_accessible :name, :tag, :status_id
   
   validates :name, presence: true
 
