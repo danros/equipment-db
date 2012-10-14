@@ -25,6 +25,11 @@ class DevicesController < ApplicationController
   end
 
   def update
-    raise "Not yet implemented"
+    device = Device.find(params[:id])
+    device.update_attributes(params[:device])
+    device.save
+    if device.valid?
+      redirect_to device_path(device), :status => 303
+    end
   end
 end

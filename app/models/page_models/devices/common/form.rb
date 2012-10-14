@@ -6,6 +6,10 @@ module PageModels
 	  'Device'
         end
 
+        def action
+          @device ? "/devices/#{@device.id}" : '/devices'
+        end
+
         def initialize(device = nil)
           @device = device
         end
