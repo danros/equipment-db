@@ -14,11 +14,11 @@ module PageModels
       end
 
       def reference_url
-        @device.reference_url
+        @device.reference_url.blank? ? nil : @device.reference_url
       end
 
       def reference_url_text
-        @device.reference_url.blank? ? nil : '(not set)'
+        @device.reference_url.blank? ? '(not set)' : @device.reference_url
       end
 
       def status
