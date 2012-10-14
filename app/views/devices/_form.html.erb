@@ -1,15 +1,11 @@
-<%= form_for(form, :url => devices_path, :method => 'post') do |f| %>
-  <legend>Add a new device</legend>
-  <%= f.label(:name, "Name:") %>
-  <%= f.text_field(:name) %>
-  <%= f.label(:status_id, "Status:") %>
-  <%= f.select(:status_id, options_for_select(form.status_values)) %>
-  <% if false %>
-  <%= label(:device, :tag, "Tag:") %>
-  <%= text_field(:device, :tag) %>
-  <%= label(:device, :reference_url, "Reference URL:") %>
-  <%= text_field(:device, :refrerence_url) %>
-  <span class="help-block">Please create a page on the <a href="http://makespace.org/wiki">Makespace wiki</a> and reference it here. This can be used for a fuller description of the device, links to technical information, relevant software, etc.</span>
-  <% end %>
+<form action="<%= devices_path %>" method="post">
+  <label for="device_name">Name:</label>
+  <input type="text" id="device_name" name="device[name]" value="<%= form.name %>">
+  <label for="device_status_id">Status:</label>
+  <select id="device_status_id" name="device[status_id]">
+    <% form.status_values.each do |v| %> 
+      <option value="<%= v[1] %>"<%= ' selected="selected"' if v[1] == form.status_id %>><%= v[0] %></option>
+    <% end %>
+  </select>
   <p><button type="submit" class="btn">Submit</button><a class="btn" href="/">Cancel</a></p>
-<% end %>
+</form>
