@@ -2,7 +2,13 @@
   <div class="navbar-inner">
     <div class="container">
       <%= link_to "Makespace Equipment Database", { controller: :home, action: :show }, class: 'brand' %>
-      <p class="navbar-text pull-right"><%= link_to "Sign in", { controller: 'sessions', action: 'new' }, class: 'navbar-link' %></p>
+      <p class="navbar-text pull-right">
+      <% if user_signed_in? %>
+        <%= link_to "Sign out", signout_path, class: 'navbar-link' %>
+      <% else %>
+        <%= link_to "Sign in", new_session_path, class: 'navbar-link' %>
+      <% end %>
+      </p>
     </div>
   </div>
 </header>

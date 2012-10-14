@@ -36,6 +36,11 @@ gem 'bootstrap-sass'
 # Annotate models with the DB schema
 gem 'annotate', group: :development
 
+group :test do
+  # capybara allows writing simple tests for rendered webpage content
+  gem 'capybara'
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
