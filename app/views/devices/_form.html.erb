@@ -1,9 +1,9 @@
-<%= form_tag(devices_path, :method => 'post') do %>
+<%= form_for(form, :url => devices_path, :method => 'post') do |f| %>
   <legend>Add a new device</legend>
-  <%= label(:device, :name, "Name:") %>
-  <%= text_field(:device, :name, form.name) %>
-  <%= label(:device, :status_id, "Status:") %>
-  <%= select(:device, :status_id, options_for_select(form.status_values), form.status_id) %>
+  <%= f.label(:name, "Name:") %>
+  <%= f.text_field(:name) %>
+  <%= f.label(:status_id, "Status:") %>
+  <%= f.select(:status_id, options_for_select(form.status_values)) %>
   <% if false %>
   <%= label(:device, :tag, "Tag:") %>
   <%= text_field(:device, :tag) %>
