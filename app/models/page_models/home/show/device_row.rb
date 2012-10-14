@@ -15,7 +15,7 @@ module PageModels
 	end
 	
 	def status
- 	  '(status)'
+          @device.status ? @device.status.name : '(not set)'
 	end 
 
 	def tag
