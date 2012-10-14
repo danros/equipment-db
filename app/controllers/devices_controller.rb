@@ -8,11 +8,19 @@ class DevicesController < ApplicationController
     end
   end
 
+  def edit
+    raise "Not yet implemented"
+  end 
+
   def new
   end
 
   def show
     device = Device.find(params[:id])
     @page = PageModels::Devices::Show.new(device)
+  end
+
+  def update
+    raise "Not yet implemented"
   end
 end
