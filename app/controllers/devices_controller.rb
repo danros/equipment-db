@@ -10,9 +10,10 @@ class DevicesController < ApplicationController
 
   def edit
     raise "Not yet implemented"
-  end 
+  end
 
   def new
+    @page = PageModels::Devices::New.new
   end
 
   def show

@@ -3,7 +3,7 @@
   <%= label(:device, :name, "Name:") %>
   <%= text_field(:device, :name) %>
   <%= label(:device, :status, "Status:") %>
-  <%= select(:device, :status, options_for_select([['Working', 1], ['B0rked', 2]])) %>
+  <%= select(:device, :status, options_for_select(form.status_values) %>
   <%= label(:device, :tag, "Tag:") %>
   <%= text_field(:device, :tag) %>
   <%= label(:device, :reference_url, "Reference URL:") %>
