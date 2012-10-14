@@ -3,7 +3,13 @@
   <li class="active"><%= @page.name %></li>
 </ul>
 <h1><%= @page.name %></h1>
+<p><strong>More information:</strong> 
+  <% if @page.reference_url %>
+    <a href="<%= @page.reference_url %>"><%= @page.reference_url_text %></a>
+  <% else %>   
+    <%= @page.reference_url_text %>
+  <% end %>
+</p>
 <p><strong>Status:</strong> <%= @page.status %></p>
 <p><strong>Tag:</strong> <%= @page.tag %></p>
-<p><strong>More information:</strong> <a href="<%= @page.reference_url %>"><%= @page.reference_url %></a></p>
 <p><a class="btn" href="<%= @page.edit_device_path %>">Edit</a></p>

@@ -14,7 +14,11 @@ module PageModels
       end
 
       def reference_url
-        @device.reference_url || '(not set}'
+        @device.reference_url
+      end
+
+      def reference_url_text
+        @device.reference_url || '(not set)'
       end
 
       def status
@@ -23,7 +27,7 @@ module PageModels
 
       def tag
         '(tag)'
-      end 
+      end
     end
   end
 end
