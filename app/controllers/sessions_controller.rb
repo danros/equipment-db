@@ -8,4 +8,11 @@ class SessionsController < ApplicationController
       redirect_to root_url, :status => 303
     end
   end
+
+  def destroy
+    if session[:user_id]
+      session.delete(:user_id)
+      redirect_to root_url
+    end
+  end
 end
