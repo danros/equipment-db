@@ -7,10 +7,12 @@ class DevicesController < ApplicationController
     if device.valid?
       redirect_to device_path(device), :status => 303
     end
+    # @page = PageModels::Device::Create.new
   end
 
   def edit
-    raise "Not yet implemented"
+    device = Device.find(params[:id])
+    @page = PageModels::Devices::Edit.new(device)
   end
 
   def new

@@ -1,9 +1,9 @@
 <%= form_tag(devices_path, :method => 'post') do %>
   <legend>Add a new device</legend>
   <%= label(:device, :name, "Name:") %>
-  <%= text_field(:device, :name) %>
+  <%= text_field(:device, :name, form.name) %>
   <%= label(:device, :status_id, "Status:") %>
-  <%= select(:device, :status_id, options_for_select(form.status_values)) %>
+  <%= select(:device, :status_id, options_for_select(form.status_values), form.status_id) %>
   <% if false %>
   <%= label(:device, :tag, "Tag:") %>
   <%= text_field(:device, :tag) %>
