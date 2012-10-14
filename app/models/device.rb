@@ -15,4 +15,6 @@ class Device < ActiveRecord::Base
 
   has_many :asset_tags
   has_many :owners
+
+  belongs_to :status
 end
