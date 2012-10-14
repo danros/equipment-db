@@ -1,7 +1,12 @@
+
 <ul class="breadcrumb">
   <li class="active">All devices</li>
 </ul>
+
 <h1>All the things</h1>
+
+<p><%= link_to "Add a device", new_device_path, class: 'btn btn-mini' %></p>
+
 <table class="table">
   <thead>
     <tr>
@@ -16,8 +21,6 @@
     <% end %>
   </tbody>
 </table>
-<p><a href="<%= new_device_path %>" class="btn">Add a device</a></p>
 
-<hr>
 <h4>About this site</h4>
 <p>The source code for this site lives at <a href="https://github.com/Makespace/equipment-db">https://github.com/Makespace/equipment-db</a>. Please report bugs and make feature requests using the GitHub ‘issues’ system.</p>
