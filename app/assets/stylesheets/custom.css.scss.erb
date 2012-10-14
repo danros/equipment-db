@@ -46,11 +46,10 @@ html, body { height: 100%; }
 
 // add a makespace logo to the left of the title
 .brand {
-  padding-left: (2.0 * $navbarHeight) + 5px !important;
-  background-image: url(<%= asset_path 'makespace_logo_40px.png' %>);
-  background-size: auto $navbarHeight;
+  padding-left: $gridGutterWidth + 45px + 5px !important;
+  background-image: url(<%= asset_path 'makespace_logo_30px.png' %>);
   background-repeat: no-repeat;
-  background-position: $gridGutterWidth 0;
+  background-position: $gridGutterWidth 50%;
 }
 
 // ///// MAIN CONTENT /////
