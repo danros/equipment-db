@@ -1,4 +1,7 @@
 <form action="<%= form.action %>" method="post">
+  <% if form.method == 'put' %>
+    <input type="hidden" name="_method" value="put">
+  <% end %>
   <label for="device_name">Name:</label>
   <input type="text" id="device_name" name="device[name]" value="<%= form.name %>">
   <label for="device_status_id">Status:</label>

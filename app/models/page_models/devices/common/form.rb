@@ -14,6 +14,10 @@ module PageModels
           @device = device
         end
 
+	def method
+	  @device ? 'put' : 'post'
+	end 
+
         def name
           @device && @device.name
         end
