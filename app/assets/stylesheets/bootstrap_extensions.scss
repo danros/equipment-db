@@ -1,0 +1,7 @@
+// Put in any extensions to the basic Bootstrap styles here.
+
+// The background colour of warning rows.
+$tableWarningBackground: #FCF8E3;
+
+// Add a 'warning' class for table rows.
+.table tbody tr.warning td { background-color: $tableWarningBackground; }
