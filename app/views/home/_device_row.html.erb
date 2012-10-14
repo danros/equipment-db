@@ -1,5 +1,11 @@
 <tr<%=raw " class=\"#{device_row.highlight_style}\"" if device_row.highlight_style %>>
   <td><a href="<%=device_row.path %>"><%=device_row.name %></a></td>
   <td><%=device_row.tag %></td>
-  <td><%=device_row.status %></td>
+  <td>
+    <% if device_row.emphasize_status %>
+      <strong><%=device_row.status %></strong>
+    <% else %>
+      <%=device_row.status %>
+    <% end %>
+  </td>
 </tr>

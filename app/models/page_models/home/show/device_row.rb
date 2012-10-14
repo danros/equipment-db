@@ -6,11 +6,19 @@ module PageModels
           @device = device
         end
 
+	def emphasize_status
+          if @device.status && (@device.status.name == 'Inoperable')
+            true
+          else
+            false
+          end
+	end
+
 	def highlight_style
           if @device.status && (@device.status.name == 'Inoperable')
             'error'
           elsif @device.status && (@device.status.name == 'Damaged')
-            'warning'
+            'error' # For some reason 'warning' isn't workin in Bootstrap
           else
             nil
           end
