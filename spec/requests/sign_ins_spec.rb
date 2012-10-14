@@ -34,7 +34,7 @@ describe "after signing in correctly" do
   end
 end
 
-describe "after signing in incorrectly" do
+describe "signing in incorrectly" do
   before do
     visit new_session_path
     fill_in 'Username:', with: 'FIXME: ignored'
@@ -42,17 +42,18 @@ describe "after signing in incorrectly" do
     click_button 'Sign in'
   end
 
-  it "the sign in link is kept" do
+  it "keeps the sign in link" do
     page.should have_link('Sign in', href: new_session_path)
   end
 
-  it "an error is shown" do
-    page.should have_selector('div.alert.alert-error', text: 'incorrect')
-  end
+  describe "shows an error" do
+    specify "with the right HTML class and content" do
+      page.should have_selector('div.alert.alert-error', text: 'incorrect')
+    end
 
-  it "an error is shown once" do
-    page.should have_selector('div.alert.alert-error', text: 'incorrect')
-    visit root_path
-    page.should_not have_selector('div.alert.alert-error', text: 'incorrect')
+    specify "which is shown once" do
+      visit root_path
+      page.should_not have_selector('div.alert.alert-error', text: 'incorrect')
+    end
   end
 end
