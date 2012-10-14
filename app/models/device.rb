@@ -9,7 +9,7 @@
 #
 
 class Device < ActiveRecord::Base
-  attr_accessible :name, :tag, :status_id, :refrence_url
+  attr_accessible :name, :tag, :status_id, :reference_url
   
   validates :name, presence: true
 
