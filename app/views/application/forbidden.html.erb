@@ -1,2 +1,10 @@
-<h1>Sign in first</h1>
-<%= link_to "Sign in", :controller => 'sessions', :action => 'new' %>
+<div class="hero-unit">
+  <h1>Hello there!</h1>
+
+  <p>The <a href="http://makespace.org/">Makespace</a> equipment database lets
+  you keep track of what equipment is in the space, whether it works and who is
+  responsible for fixing it. Before you can start, however, you need to
+  <%= link_to "sign in", new_session_path %>.</p>
+
+  <p><%= link_to "Sign in »", new_session_path, class: 'btn btn-primary btn-large' %></p>
+</div>
