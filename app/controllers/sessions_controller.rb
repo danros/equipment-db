@@ -14,6 +14,8 @@ class SessionsController < ApplicationController
   def destroy
     if session[:user_id]
       session.delete(:user_id)
+
+      flash[:info] = 'You have been signed out.'
       redirect_to root_url
     end
   end
