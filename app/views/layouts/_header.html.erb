@@ -1,10 +1,8 @@
-<header class="navbar navbar-fixed-top">
+<header class="navbar navbar-static-top">
   <div class="navbar-inner">
     <div class="container">
       <%= link_to "Makespace Equipment Database", { controller: :home, action: :show }, class: 'brand' %>
-      <ul class="nav pull-right">
-        <li><%= link_to "Sign in", controller: 'sessions', action: 'new' %></li>
-      </ul>
+      <p class="navbar-text pull-right"><%= link_to "Sign in", { controller: 'sessions', action: 'new' }, class: 'navbar-link' %></p>
     </div>
   </div>
 </header>

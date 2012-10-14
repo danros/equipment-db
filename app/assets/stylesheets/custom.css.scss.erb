@@ -3,20 +3,77 @@ $makespaceOrange: #fe5200;
 $makespaceGreen: #8dda00;
 
 // Add Bootstrap customisation here.
-$navbarBackground: hsl(hue($makespaceGreen), 50%, 90%);
-$navbarBrandColor: hsl(hue($makespaceOrange), 50%, 33%);
+$navbarBackground: hsl(hue($makespaceGreen), 100%, 95%);
 
 @import "bootstrap";
 
-body {
-  padding-top: $navbarHeight + $baseLineHeight;
+$footerBackground: hsl(hue($makespaceOrange), 100%, 99%);
+$footerHighlight: hsl(hue($makespaceOrange), 100%, 95%);
+
+$headerSkip: $baseLineHeight;
+$footerSkip: $baseLineHeight;
+$footerHeight: $navbarHeight;
+
+// ///// UTILITY /////
+
+@mixin gradient($first, $second) {
+  background: $second;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$first', endColorstr='$second');
+  background: -webkit-gradient(linear, left top, left bottom, from($first), to($second));
+  background: -moz-linear-gradient(top,  $first,  $second);
 }
+
+@mixin box-shadow($top, $left, $blur, $color, $inset:"") {
+  -webkit-box-shadow:$top $left $blur $color #{$inset};
+  -moz-box-shadow:$top $left $blur $color #{$inset};
+  box-shadow:$top $left $blur $color #{$inset};
+}
+
+// ///// TOP-LEVEL /////
+
+html, body { height: 100%; }
+
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -1*$footerHeight;
+}
+
+#push, #footer { height: $footerHeight; }
+
+// ///// HEADER /////
 
 // add a makespace logo to the left of the title
 .brand {
-  padding-left: (2.0 * $navbarHeight) + 10px !important;
+  padding-left: (2.0 * $navbarHeight) + 5px !important;
   background-image: url(<%= asset_path 'makespace_logo_40px.png' %>);
   background-size: auto $navbarHeight;
   background-repeat: no-repeat;
   background-position: $gridGutterWidth 0;
+}
+
+// ///// MAIN CONTENT /////
+
+.main-content {
+  padding-top: $headerSkip;
+  padding-bottom: $footerSkip;
+}
+
+// ///// FOOTER /////
+
+footer {
+  @include gradient($footerHighlight, $footerBackground);
+  @include box-shadow(inset, 0, 2px, 2px, rgba(0, 0, 0, 0.1));
+
+  a {
+    color: $navbarLinkColor;
+
+    &:hover { color: $navbarLinkColorHover; }
+    &:active { color: $navbarLinkColorActive; }
+  }
+
+  .footer-wrap {
+    padding-top: 8px;
+  }
 }

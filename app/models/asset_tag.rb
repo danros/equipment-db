@@ -5,8 +5,9 @@
 #  id         :integer          not null, primary key
 #  code       :string(255)
 #  active     :boolean
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  created_at :datetime
+#  updated_at :datetime
+#  device_id  :integer
 #
 
 class AssetTag < ActiveRecord::Base
