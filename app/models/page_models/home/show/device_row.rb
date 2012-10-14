@@ -18,7 +18,7 @@ module PageModels
           if @device.status && (@device.status.name == 'Inoperable')
             'error'
           elsif @device.status && (@device.status.name == 'Damaged')
-            'error' # For some reason 'warning' isn't workin in Bootstrap
+            'warning'
           else
             nil
           end
