@@ -18,7 +18,7 @@ module PageModels
       end
 
       def reference_url_text
-        @device.reference_url || '(not set)'
+        @device.reference_url.blank? ? nil : '(not set)'
       end
 
       def status
