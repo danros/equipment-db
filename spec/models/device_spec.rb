@@ -2,10 +2,12 @@
 #
 # Table name: devices
 #
-#  id         :integer          not null, primary key
-#  name       :text
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id            :integer          not null, primary key
+#  name          :text
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  status_id     :integer
+#  reference_url :text
 #
 
 require 'spec_helper'

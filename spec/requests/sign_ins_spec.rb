@@ -19,8 +19,8 @@ end
 describe "after signing in correctly" do
   before do
     visit new_session_path
-    fill_in 'Username:', with: 'FIXME: ignored'
-    fill_in 'Password:', with: 'mak3spac3'
+    fill_in 'session_username', with: 'FIXME: ignored'
+    fill_in 'session_password', with: 'mak3spac3'
     click_button 'Sign in'
   end
 
@@ -37,8 +37,8 @@ end
 describe "signing in incorrectly" do
   before do
     visit new_session_path
-    fill_in 'Username:', with: 'FIXME: ignored'
-    fill_in 'Password:', with: 'not the password'
+    fill_in 'session_username', with: 'FIXME: ignored'
+    fill_in 'session_password', with: 'not the password'
     click_button 'Sign in'
   end
 

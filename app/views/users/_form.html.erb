@@ -1,0 +1,52 @@
+<%= form_for(@user, html: { class: 'row-fluid' }) do |f| %>
+  <legend>Sign up for a new account</legend>
+
+  <% remove_password_digest_errors %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+      <p><strong>Not so fast!</strong> Please correct the
+      <%= pluralize(@user.errors.count, "problem") %> below.</p>
+
+      <p>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+      </p>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :name, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, class: 'span12', placeholder: 'Joe Bloggs' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :email, 'Email address', class: 'control-label' %>
+    <div class="controls">
+      <%= f.email_field :email, class: 'span12', placeholder: 'name@example.com' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :password, class: 'control-label' %>
+    <div class="controls">
+      <div class="span6"><%= f.password_field :password , class: 'span12' %></div>
+      <div class="span6"><%= f.password_field :password_confirmation , class: 'span12' %></div>
+      <span class="help-block">Confirm your password by entering it twice.</span>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit "Create my account", class: "btn btn-large btn-primary span6 offset3" %>
+    </div>
+  </div>
+<% end %>

@@ -39,10 +39,14 @@ gem 'annotate', group: :development
 group :test do
   # capybara allows writing simple tests for rendered webpage content
   gem 'capybara'
+
+  # FactoryGirl allows simple fixtures to be generated in the database for
+  # testing (e.g. populating our users table with some test data).
+  gem 'factory_girl_rails', '~> 4.0'
 end
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
