@@ -4,7 +4,7 @@
 #
 #  id       :integer          not null, primary key
 #  name     :text
-#  severity :integer
+#  severity :integer          default(0), not null
 #
 
 class Status < ActiveRecord::Base
