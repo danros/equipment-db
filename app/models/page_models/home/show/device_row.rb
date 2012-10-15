@@ -7,7 +7,7 @@ module PageModels
         end
 
 	def emphasize_status
-          if @device.status && (@device.status.name == 'Inoperable')
+          if @device.status && (@device.status.severity > StatusSeverity::WARNING)
             true
           else
             false
@@ -15,12 +15,14 @@ module PageModels
 	end
 
 	def highlight_style
-          if @device.status && (@device.status.name == 'Inoperable')
+          # Explicit: if no status recorded, return 'nil'
+          return nil unless @device.status
+
+          case @device.status.severity
+          when StatusSeverity::ERROR
             'error'
-          elsif @device.status && (@device.status.name == 'Damaged')
+          when StatusSeverity::WARNING
             'warning'
-          else
-            nil
           end
 	end
 
