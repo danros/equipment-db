@@ -11,8 +11,8 @@ describe "signing out" do
   describe "after signing in" do
     before do
       visit new_session_path
-      fill_in 'Username:', with: 'FIXME: ignored'
-      fill_in 'Password:', with: 'mak3spac3'
+      fill_in 'session_username', with: 'FIXME: ignored'
+      fill_in 'session_password', with: 'mak3spac3'
       click_button 'Sign in'
       visit signout_path
     end
