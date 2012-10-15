@@ -1,9 +1,26 @@
-<%= form_tag(sessions_path, :method => 'post') do %>
+<%= form_tag(sessions_path, method: 'post', class: 'row-fluid form-horizontal') do %>
   <legend>Sign in</legend>
-  <%= label(:session, :username, "Username:") %>
-  <%= text_field(:session, :username) %>
-  <%= label(:session, :password, "Password:") %>
-  <%= password_field(:session, :password) %>
+
+  <div class="control-group">
+    <%= label :session, :username, 'Email address', class: 'control-label' %>
+    <div class="controls">
+      <%= text_field :session, :username, class: 'span12', placeholder: 'name@example.com' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= label :session, :password, 'Password', class: 'control-label' %>
+    <div class="controls">
+      <%= password_field :session, :password, class: 'span12', placeholder: 'password' %>
+    </div>
+  </div>
   <span class="help-block">If you don't yet have an account, or if you've forgotten your username or password, please email <a href="mailto:foo@bar.com">foo@bar.com</a></span>
-  <p><button type="submit" class="btn">Sign in</button></p>
+
+  <br>
+
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-large btn-primary span4 offset4">Sign in</button>
+    </div>
+  </div>
 <% end %>
