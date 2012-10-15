@@ -101,10 +101,18 @@ describe User do
       @user.reload.email.should == mixed_case_email.downcase
     end
   end  
+
+  describe "when password is too short" do
+    before do
+      @user.password = @user.password_confirmation = 'foo'
+    end
+
+    it { should_not be_valid }
+  end
 end
 
-describe "a user with password 'foo'" do
-  before { @user = FactoryGirl.create(:user_with_password_foo) }
+describe "a user with password 'foobar'" do
+  before { @user = FactoryGirl.create(:user_with_password_foobar) }
   subject { @user }
 
   describe "should have a non-nil password digest" do
@@ -112,31 +120,31 @@ describe "a user with password 'foo'" do
     specify { password_digest.should_not be_nil }
   end
 
-  it "has password 'foo'" do
-    @user.authenticate('foo').should be_true
+  it "has password 'foobar'" do
+    @user.authenticate('foobar').should be_true
   end
 
-  it "does not have password 'bar'" do
-    @user.authenticate('bar').should be_false
+  it "does not have password 'barfoo'" do
+    @user.authenticate('barfoo').should be_false
   end
 
   it "does not have a blank password" do
     @user.authenticate('').should be_false
   end
 
-  describe "after changing it to 'buzz'" do
+  describe "after changing it to 'buzzquux'" do
     before do
-      @user.password = 'buzz'
-      @user.password_confirmation = 'buzz'
+      @user.password = 'buzzquux'
+      @user.password_confirmation = 'buzzquux'
       @user.save
     end
 
-    it "has password 'buzz'" do
-      @user.authenticate('buzz').should be_true
+    it "has password 'buzzquux'" do
+      @user.authenticate('buzzquux').should be_true
     end
 
-    it "does not have password 'foo'" do
-      @user.authenticate('foo').should be_false
+    it "does not have password 'foobar'" do
+      @user.authenticate('foobar').should be_false
     end
   end
 
@@ -145,7 +153,7 @@ describe "a user with password 'foo'" do
 
     it { should == found_user }
 
-    specify { found_user.authenticate('foo').should be_true }
-    specify { found_user.authenticate('bar').should be_false }
+    specify { found_user.authenticate('foobar').should be_true }
+    specify { found_user.authenticate('barfoo').should be_false }
   end
 end

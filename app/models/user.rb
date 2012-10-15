@@ -12,7 +12,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :password_digest, :active, :email, :name
+  attr_accessible :password, :password_confirmation, :active, :email, :name
 
   before_save { |user| user.email = email.downcase }
 
@@ -38,4 +38,6 @@ class User < ActiveRecord::Base
   validates :email, presence:   true,
                     format:     { with: /.+@.+/ },
                     uniqueness: { case_sensitive: false }
+
+  validates :password, presence: true, length: { minimum: 6 }
 end

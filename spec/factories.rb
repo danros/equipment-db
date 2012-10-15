@@ -4,10 +4,10 @@ FactoryGirl.define do
     email 'joe@example.com'
   end
 
-  factory :user_with_password_foo, class: User do
+  factory :user_with_password_foobar, class: User do
     name 'Joe Example'
     email 'Joe_Example@example.com'
-    password 'foo'
-    password_confirmation 'foo'
+    password 'foobar'
+    password_confirmation 'foobar'
   end
 end
