@@ -9,6 +9,10 @@ module PageModels
         "/devices/#{@device.id}/edit"
       end
 
+      def maintainers
+        ['Foo']
+      end
+
       def name
         @device.name
       end

@@ -40,4 +40,6 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
 
   validates :password, presence: true, length: { minimum: 6 }
+
+  has_and_belongs_to_many :devices, :join_table => :devices_maintainers
 end

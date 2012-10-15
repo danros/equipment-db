@@ -13,3 +13,9 @@
 <p><strong>Status:</strong> <%= @page.status %></p>
 <p><strong>Tag:</strong> <%= @page.tag %></p>
 <p><a class="btn" href="<%= @page.edit_device_path %>">Edit</a></p>
+<h2>Maintainers</h2>
+<ul>
+<% @page.maintaners.each do |maintainer| %>
+   <li><%= maintainer %> <a href="#">(delete)</a></li>
+<% end %>
+</ul>

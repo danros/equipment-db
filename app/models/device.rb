@@ -19,4 +19,6 @@ class Device < ActiveRecord::Base
   has_many :owners
 
   belongs_to :status
+
+  has_and_belongs_to_many :maintainers, :class_name => :user
 end

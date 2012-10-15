@@ -1,6 +1,8 @@
 EquipmentDb::Application.routes.draw do
   root      :to => 'home#show'
-  resources :devices, :only => [:create, :edit, :new, :show, :update]
+  resources :devices, :only => [:create, :edit, :new, :show, :update] do |r|
+    r.resources :maintainers, :only => [:create, :destroy, :new]
+  end
   resources :sessions, :only => [:create, :new]
   resources :users, :only => [:create, :new, :show]
 
