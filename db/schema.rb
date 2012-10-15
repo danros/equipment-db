@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121015130909) do
+ActiveRecord::Schema.define(:version => 20121015152621) do
 
   create_table "asset_tags", :force => true do |t|
     t.string   "code"
@@ -45,5 +45,16 @@ ActiveRecord::Schema.define(:version => 20121015130909) do
     t.text    "name"
     t.integer "severity", :default => 0, :null => false
   end
+
+  create_table "users", :force => true do |t|
+    t.text     "name",                              :null => false
+    t.text     "email",                             :null => false
+    t.boolean  "active",          :default => true, :null => false
+    t.text     "password_digest", :default => "",   :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
 end
