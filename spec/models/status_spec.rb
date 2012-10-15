@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: statuses
+#
+#  id       :integer          not null, primary key
+#  name     :text
+#  severity :integer
+#
+
 require 'spec_helper'
 
 describe Status do
