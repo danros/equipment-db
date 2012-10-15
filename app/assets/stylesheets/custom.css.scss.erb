@@ -16,6 +16,17 @@ $footerHeight: $navbarHeight;
 
 // ///// UTILITY /////
 
+/* Rails scaffold style compatibility */
+#error_explanation {
+  @extend .alert;
+  @extend .alert-error;
+  @extend .alert-block; /* optional */
+}
+
+.field_with_errors {
+  @extend .control-group.error
+}
+
 @mixin gradient($first, $second) {
   background: $second;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$first', endColorstr='$second');
