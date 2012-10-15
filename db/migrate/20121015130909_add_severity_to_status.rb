@@ -1,17 +1,17 @@
 class AddSeverityToStatus < ActiveRecord::Migration
   def change
-    add_column :statuses, :severity, :integer, default: StatusSeverity::INFO, null: false
+    add_column :statuses, :severity, :integer, default: Status::Severity::INFO, null: false
 
     # Set the severity of each status using the old rule that Damaged == a
     # warning and Inoperable == an error.
     Status.all.each do |status|
       case status.name
       when "Damaged"
-        status.severity = StatusSeverity::WARNING
+        status.severity = Status::Severity::WARNING
       when "Inoperable" 
-        status.severity = StatusSeverity::ERROR
+        status.severity = Status::Severity::ERROR
       else
-        status.severity = StatusSeverity::INFO
+        status.severity = Status::Severity::INFO
       end
 
       status.save

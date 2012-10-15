@@ -7,7 +7,7 @@ module PageModels
         end
 
 	def emphasize_status
-          if @device.status && (@device.status.severity > StatusSeverity::WARNING)
+          if @device.status && (@device.status.severity > Status::Severity::WARNING)
             true
           else
             false
@@ -19,9 +19,9 @@ module PageModels
           return nil unless @device.status
 
           case @device.status.severity
-          when StatusSeverity::ERROR
+          when Status::Severity::ERROR
             'error'
-          when StatusSeverity::WARNING
+          when Status::Severity::WARNING
             'warning'
           end
 	end
