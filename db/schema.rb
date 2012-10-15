@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121014091700) do
+ActiveRecord::Schema.define(:version => 20121015130909) do
 
   create_table "asset_tags", :force => true do |t|
     t.string   "code"
@@ -42,7 +42,8 @@ ActiveRecord::Schema.define(:version => 20121014091700) do
   add_index "owners", ["email"], :name => "index_owners_on_email", :unique => true
 
   create_table "statuses", :force => true do |t|
-    t.text "name"
+    t.text    "name"
+    t.integer "severity", :default => 0, :null => false
   end
 
 end
