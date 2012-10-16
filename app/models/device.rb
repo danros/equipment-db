@@ -20,5 +20,5 @@ class Device < ActiveRecord::Base
 
   belongs_to :status
 
-  has_and_belongs_to_many :maintainers, :class_name => :user
+  has_and_belongs_to_many :maintainers, :class_name => User, :join_table => :devices_maintainers
 end

@@ -14,8 +14,9 @@
 <p><strong>Tag:</strong> <%= @page.tag %></p>
 <p><a class="btn" href="<%= @page.edit_device_path %>">Edit</a></p>
 <h2>Maintainers</h2>
+<p><a class="btn" href="<%= @page.new_maintainer_path %>">Add Maintainer</a></p>
 <ul>
 <% @page.maintainers.each do |maintainer| %>
-   <li><%= maintainer %> <a href="#">(delete)</a></li>
+   <li><%= maintainer[:name] %> <form action="<%= maintainer[:delete_path] %>" method="post" ><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit" class="btn">(delete)</button></form></li>
 <% end %>
 </ul>

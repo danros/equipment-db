@@ -10,11 +10,15 @@ module PageModels
       end
 
       def maintainers
-        ['Foo']
+        @device.maintainers.map{|maintainer| {:name => maintainer.name, :delete_path => "/devices/#{@device.id}/maintainers/#{maintainer.id}"}}
       end
 
       def name
         @device.name
+      end
+
+      def new_maintainer_path
+        "/devices/#{@device.id}/maintainers/new"
       end
 
       def reference_url

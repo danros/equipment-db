@@ -1,8 +1,10 @@
 <form action="<%= form.action %>" method="post">
   <%= token_tag(nil) %>
-  <label for="user_name">Name:</label>
-  <input type="text" id="user_name" name="user[name]">
-  <label for="user_emain">Email:</label>
-  <input type="text" id="user_emain" name="user[emain]">
+  <label for="user_id">User ID:</label>
+  <select id="user_id" name="user[id]">
+    <% form.all_users.each do |user| %>
+      <option value="<%= user[:value] %>"><%= user[:name] %></user>
+    <% end %>
+  </select>
   <p><button type="submit" class="btn">Submit</button></p>
 </form>
