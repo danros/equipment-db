@@ -5,7 +5,9 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
+group :production do
+  gem 'pg'
+end
 
 # Gems used only in development and testing
 group :development, :test do
