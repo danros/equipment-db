@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(:version => 20121015152621) do
     t.text     "reference_url"
   end
 
+  create_table "devices_maintainers", :force => true do |t|
+    t.integer  "device_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "owners", :force => true do |t|
     t.string   "name"
     t.string   "email"
