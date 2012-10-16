@@ -3,8 +3,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if params[:session][:password] == 'mak3spac3'
-      session[:user_id] = 1
+    user = User.find_by_email(params[:session][:username])
+    user = user.authenticate(params[:session][:password]) if user
+
+    if user
+      session[:user_id] = user.id
+      flash[:success] = "Sucessfully signed in as \"#{user.name}\" <#{user.email}>."
       redirect_to root_url, :status => 303
     end
 

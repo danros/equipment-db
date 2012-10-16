@@ -17,10 +17,12 @@ describe "before signing in" do
 end
 
 describe "after signing in correctly" do
+  let(:user) { FactoryGirl.create(:user_with_password_foobar) }
+
   before do
     visit new_session_path
-    fill_in 'session_username', with: 'FIXME: ignored'
-    fill_in 'session_password', with: 'mak3spac3'
+    fill_in 'session_username', with: user.email
+    fill_in 'session_password', with: user.password
     click_button 'Sign in'
   end
 
@@ -35,9 +37,11 @@ describe "after signing in correctly" do
 end
 
 describe "signing in incorrectly" do
+  let(:user) { FactoryGirl.create(:user_with_password_foobar) }
+
   before do
     visit new_session_path
-    fill_in 'session_username', with: 'FIXME: ignored'
+    fill_in 'session_username', with: user.email
     fill_in 'session_password', with: 'not the password'
     click_button 'Sign in'
   end
