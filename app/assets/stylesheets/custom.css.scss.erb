@@ -3,7 +3,6 @@ $makespaceOrange: #fe5200;
 $makespaceGreen: #8dda00;
 
 // Add Bootstrap customisation here.
-$navbarBackground: hsl(hue($makespaceGreen), 100%, 95%);
 
 $linkColor: hsl(hue($makespaceGreen), 100%, 30%);
 $btnPrimaryBackground: darken($makespaceGreen, 2%);
@@ -12,8 +11,8 @@ $btnPrimaryBackgroundHighlight: darken($btnPrimaryBackground, 10%);
 @import "bootstrap";
 @import "bootstrap-responsive";
 
-$footerBackground: hsl(hue($makespaceOrange), 100%, 99%);
-$footerHighlight: hsl(hue($makespaceOrange), 100%, 95%);
+$footerBackground: $navbarBackground;
+$footerBackgroundHighlight: darken($navbarBackground, 10%);
 
 $headerSkip: $baseLineHeight;
 $footerSkip: $baseLineHeight;
@@ -78,8 +77,10 @@ html, body { height: 100%; }
 // ///// FOOTER /////
 
 footer {
-  @include gradient($footerHighlight, $footerBackground);
-  @include box-shadow(inset, 0, 2px, 2px, rgba(0, 0, 0, 0.1));
+  .footer {
+    @extend .navbar;
+    @extend .navbar-static-top;
+  }
 
   a {
     color: $navbarLinkColor;
@@ -88,7 +89,12 @@ footer {
     &:active { color: $navbarLinkColorActive; }
   }
 
-  .footer-wrap {
-    padding-top: 8px;
+  .footer-inner {
+    @extend .navbar-inner;
+    @include gradient($footerBackgroundHighlight, $footerBackground);
+  }
+
+  .footer-text {
+    @extend .navbar-text;
   }
 }
