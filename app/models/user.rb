@@ -12,18 +12,28 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :password, :password_confirmation, :active, :email, :name
+  # Include default devise modules. Others available are:
+  # :token_authenticatable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable, :confirmable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :active, :name
 
   before_save { |user| user.email = email.downcase }
 
-  has_secure_password
-    
-  # Allow user creation without specifying a password by randomly generating a
-  # 32-byte (==256-bit) password. Obviously the user cannot log in without
-  # knowing the password but it lets us create users a) who authenticate by
-  # some manner other than passwords and b) whose password is to be set at a
-  # later time.
+  # Allow user creation without specifying a user name by using the email field
+  # if necessary. In addition, allow user creation without specifying a
+  # password by randomly generating a 32-byte (==256-bit) password. Obviously
+  # the user cannot log in without knowing the password but it lets us create
+  # users a) who authenticate by some manner other than passwords and b) whose
+  # password is to be set at a later time.
   before_validation do |user|
+    if not user.name
+      user.name = user.email
+    end
+
     if not user.password
       random_password = SecureRandom.random_bytes(32)
       self.password = random_password
@@ -42,4 +52,8 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
 
   has_and_belongs_to_many :devices, :join_table => :devices_maintainers
+
+  def authenticate(password)
+    self if self.valid_password?(password)
+  end
 end

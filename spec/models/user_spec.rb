@@ -21,7 +21,6 @@ describe User do
   it { should respond_to(:name) }
   it { should respond_to(:email) }
   it { should respond_to(:active) }
-  it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:authenticate) }
@@ -35,7 +34,6 @@ describe User do
     @user.password.should_not be_nil
     @user.password_confirmation.should_not be_nil
     @user.password.should == @user.password_confirmation
-    @user.password_digest.should_not be_nil
   end
 
   it "should have a default password of a good length" do
@@ -98,6 +96,7 @@ describe User do
     it "should be saved as lower case" do
       @user.email = mixed_case_email
       @user.save
+      @user.confirm!
       @user.reload.email.should == mixed_case_email.downcase
     end
   end  
@@ -114,11 +113,6 @@ end
 describe "a user with password 'foobar'" do
   before { @user = FactoryGirl.create(:user_with_password_foobar) }
   subject { @user }
-
-  describe "should have a non-nil password digest" do
-    let(:password_digest) { @user.password_digest }
-    specify { password_digest.should_not be_nil }
-  end
 
   it "has password 'foobar'" do
     @user.authenticate('foobar').should be_true
