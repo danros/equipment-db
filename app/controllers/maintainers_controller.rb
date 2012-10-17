@@ -1,5 +1,5 @@
 class MaintainersController < ApplicationController
-  before_filter :require_authentication
+  before_filter :authenticate_user!
 
   def create
     device = Device.find(params[:device_id])
