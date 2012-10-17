@@ -1,0 +1,11 @@
+Dear <%= user.name %>
+
+You are receiving this alert because you are listed as a maintainer of
+a piece of equipment at Makespace which has been marked as needing
+attention:
+
+<%= device.name %> has been marked as <%= device.status.name %>
+
+Further information on this device can be found at:
+
+http://makespace-equipment-db.herokuapp.com/devices/<%= device.id %>
