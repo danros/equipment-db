@@ -3,7 +3,7 @@ class MaintainersController < ApplicationController
 
   def create
     device = Device.find(params[:device_id])
-    user = User.find_or_create(params[:user])
+    user = User.find(params[:user][:id])
     device.maintainers << user
     redirect_to "/devices/#{params[:device_id]}", :status => 303 # TODO: Should this be part of the page model?
   end

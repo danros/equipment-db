@@ -42,6 +42,8 @@ resource is the [rails tutorial
 e-book](http://ruby.railstutorial.org/chapters/beginning#top) which is
 available online.
 
+See the hacking guide (`doc/HACKING.md`) for more details.
+
 ## License
 
 Copyright (C) 2012 Philip Cowans and Rich Wareham
