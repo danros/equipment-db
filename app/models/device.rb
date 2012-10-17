@@ -26,7 +26,7 @@ class Device < ActiveRecord::Base
 
   def deliver_status_change_email
     maintainers.each do |maintainer|
-      MaintenanceAlertMailer.deliver_status_change(maintainer, self)
+      MaintenanceAlertMailer.status_change(maintainer, self).deliver
     end
   end
 end
