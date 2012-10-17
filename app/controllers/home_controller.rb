@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_filter :require_authentication
+  before_filter :authenticate_user!
 
   def show
     devices = Device.find(:all, :order => 'name')
