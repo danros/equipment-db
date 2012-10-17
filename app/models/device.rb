@@ -25,8 +25,10 @@ class Device < ActiveRecord::Base
   after_save :deliver_status_change_email
 
   def deliver_status_change_email
-    maintainers.each do |maintainer|
-      MaintenanceAlertMailer.status_change(maintainer, self).deliver
+    if status_id_changed?
+      maintainers.each do |maintainer|
+        MaintenanceAlertMailer.status_change(maintainer, self).deliver
+      end
     end
   end
 end
