@@ -22,7 +22,7 @@ class Device < ActiveRecord::Base
 
   has_and_belongs_to_many :maintainers, :class_name => User, :join_table => :devices_maintainers
 
-  after_commit :deliver_status_change_email
+  after_save :deliver_status_change_email
 
   def deliver_status_change_email
     if status_id_changed? && (status.severity > Status::Severity::WARNING)
