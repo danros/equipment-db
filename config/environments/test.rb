@@ -40,4 +40,7 @@ EquipmentDb::Application.configure do
   silence_warnings do
     BCrypt::Engine::DEFAULT_COST = BCrypt::Engine::MIN_COST
   end
+
+  # Set default domain for ActionMailer
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end
