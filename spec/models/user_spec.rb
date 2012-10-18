@@ -2,26 +2,13 @@
 #
 # Table name: users
 #
-#  id                     :integer          not null, primary key
-#  name                   :text             not null
-#  email                  :text             not null
-#  active                 :boolean          default(TRUE), not null
-#  password_digest        :text             default(""), not null
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  encrypted_password     :string(255)      default(""), not null
-#  reset_password_token   :string(255)
-#  reset_password_sent_at :datetime
-#  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0)
-#  current_sign_in_at     :datetime
-#  last_sign_in_at        :datetime
-#  current_sign_in_ip     :string(255)
-#  last_sign_in_ip        :string(255)
-#  confirmation_token     :string(255)
-#  confirmed_at           :datetime
-#  confirmation_sent_at   :datetime
-#  unconfirmed_email      :string(255)
+#  id              :integer          not null, primary key
+#  name            :text             not null
+#  email           :text             not null
+#  active          :boolean          default(TRUE), not null
+#  password_digest :text
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 
 require 'spec_helper'
@@ -34,6 +21,7 @@ describe User do
   it { should respond_to(:name) }
   it { should respond_to(:email) }
   it { should respond_to(:active) }
+  it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:authenticate) }
@@ -47,6 +35,7 @@ describe User do
     @user.password.should_not be_nil
     @user.password_confirmation.should_not be_nil
     @user.password.should == @user.password_confirmation
+    @user.password_digest.should_not be_nil
   end
 
   it "should have a default password of a good length" do
@@ -109,7 +98,6 @@ describe User do
     it "should be saved as lower case" do
       @user.email = mixed_case_email
       @user.save
-      @user.confirm!
       @user.reload.email.should == mixed_case_email.downcase
     end
   end  
@@ -126,6 +114,11 @@ end
 describe "a user with password 'foobar'" do
   before { @user = FactoryGirl.create(:user_with_password_foobar) }
   subject { @user }
+
+  describe "should have a non-nil password digest" do
+    let(:password_digest) { @user.password_digest }
+    specify { password_digest.should_not be_nil }
+  end
 
   it "has password 'foobar'" do
     @user.authenticate('foobar').should be_true
