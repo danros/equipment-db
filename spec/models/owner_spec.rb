@@ -7,7 +7,6 @@
 #  email      :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  device_id  :integer
 #
 
 require 'spec_helper'
@@ -19,7 +18,6 @@ describe Owner do
   
   it { should respond_to(:name) }
   it { should respond_to(:email) }
-  it { should respond_to(:device_id) }
   it { should be_valid }
 
   describe "when name is blank" do
