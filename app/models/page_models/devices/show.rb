@@ -21,6 +21,14 @@ module PageModels
         "/devices/#{@device.id}/maintainers/new"
       end
 
+      def new_owner_path
+        "/devices/#{@device.id}/owners/new"
+      end
+
+      def owners
+        @device.owners.map{|owner| {:name => owner.name, :delete_path => "/devices/#{@device.id}/owners/#{owner.id}"}}
+      end 
+
       def reference_url
         @device.reference_url.blank? ? nil : @device.reference_url
       end

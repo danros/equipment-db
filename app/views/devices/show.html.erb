@@ -20,3 +20,10 @@
    <li><%= maintainer[:name] %> <form action="<%= maintainer[:delete_path] %>" method="post" ><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit" class="btn">(delete)</button></form></li>
 <% end %>
 </ul>
+<h2>Owners</h2>
+<p><a class="btn" href="<%= @page.new_owner_path %>">Add Owner</a></p>
+<ul>
+<% @page.owners.each do |owner| %>
+   <li><%= owner[:name] %> <form action="<%= owner[:delete_path] %>" method="post" ><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit" class="btn">(delete)</button></form></li>
+<% end %>
+</ul>
