@@ -37,10 +37,6 @@ module PageModels
 	def status
           @device.status ? @device.status.name : '(not set)'
 	end
-
-	def tag
-	  '(tag)'
-	end
       end
     end
   end

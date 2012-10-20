@@ -27,7 +27,7 @@ module PageModels
 
       def owners
         @device.owners.map{|owner| {:name => owner.name, :delete_path => "/devices/#{@device.id}/owners/#{owner.id}"}}
-      end 
+      end
 
       def reference_url
         @device.reference_url.blank? ? nil : @device.reference_url
@@ -39,10 +39,6 @@ module PageModels
 
       def status
         @device.status ? @device.status.name : '(not set)'
-      end
-
-      def tag
-        '(tag)'
       end
     end
   end

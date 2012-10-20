@@ -6,12 +6,11 @@
 <p><strong>More information:</strong> 
   <% if @page.reference_url %>
     <a href="<%= @page.reference_url %>"><%= @page.reference_url_text %></a>
-  <% else %>   
+  <% else %>
     <%= @page.reference_url_text %>
   <% end %>
 </p>
 <p><strong>Status:</strong> <%= @page.status %></p>
-<p><strong>Tag:</strong> <%= @page.tag %></p>
 <p><a class="btn" href="<%= @page.edit_device_path %>">Edit</a></p>
 <h2>Maintainers</h2>
 <p><a class="btn" href="<%= @page.new_maintainer_path %>">Add Maintainer</a></p>
