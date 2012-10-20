@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121019214000) do
+ActiveRecord::Schema.define(:version => 20121020140100) do
 
   create_table "asset_tags", :force => true do |t|
     t.string   "code"
@@ -56,13 +56,13 @@ ActiveRecord::Schema.define(:version => 20121019214000) do
   end
 
   create_table "users", :force => true do |t|
-    t.text     "name",                                     :null => false
-    t.text     "email",                                    :null => false
-    t.boolean  "active",                 :default => true, :null => false
-    t.text     "password_digest",        :default => "",   :null => false
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
-    t.string   "encrypted_password",     :default => "",   :null => false
+    t.text     "name",                                      :null => false
+    t.text     "email",                                     :null => false
+    t.boolean  "active",                 :default => true,  :null => false
+    t.text     "password_digest",        :default => "",    :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20121019214000) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.boolean  "authorized",             :default => false, :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
