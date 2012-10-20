@@ -15,7 +15,7 @@ class Owner < ActiveRecord::Base
 
   before_save { |owner| owner.email = email.downcase }
 
-  has_and_belongs_to_many :devices
+  has_and_belongs_to_many :devices, :dependent => :destroy
 
   validates :name, presence: true
 
