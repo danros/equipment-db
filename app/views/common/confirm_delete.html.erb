@@ -1,0 +1,6 @@
+<h1>Are you sure?</h1>
+<p>Once confirmed, this action cannot be easily undone.</p>
+<p
+> <form class="form-inline" action="<%= @page.delete_path %>" method="post"><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><input type="hidden" name="confirm" value="y"><button type="submit" class="btn btn-small">Yes</button></form>
+  <form class="form-inline" action="<%= @page.delete_path %>" method="post"><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><input type="hidden" name="confirm" value="n"><button type="submit" class="btn btn-small">No</button></form>
+</p>

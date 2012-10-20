@@ -11,9 +11,16 @@ class DevicesController < ApplicationController
   end
 
   def destroy
-    device = Device.find(params[:id])
-    device.destroy
-    redirect_to '/', :status => 303
+    if params[:confirm] == 'y'
+      device = Device.find(params[:id])
+      device.destroy
+      redirect_to '/', :status => 303
+    elsif params[:confirm] == 'n'
+      redirect_to "/devices/#{params[:id]}", :status => 303
+    else
+      @page = PageModels::Common::ConfirmDelete.new("/devices/#{params[:id]}")
+      render 'common/confirm_delete'
+    end
   end
 
   def edit
