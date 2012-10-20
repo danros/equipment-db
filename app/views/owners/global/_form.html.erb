@@ -1,0 +1,8 @@
+<form action="<%= form.action %>" method="post">
+  <%= token_tag(nil) %>
+  <label for="owner_name">Name:</label>
+  <input type="text" id="owner_name" name="owner[name]">
+  <label for="owner_email">Email:</label>
+  <input type="text" id="owner_email" name="owner[email]">
+  <p><button type="submit" class="btn">Submit</button></p>
+</form>

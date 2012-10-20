@@ -6,4 +6,5 @@ EquipmentDb::Application.routes.draw do
     resources :maintainers, :only => [:create, :destroy, :new]
     resources :owners, :only => [:create, :destroy, :new]
   end
+  resourece :owners, :only => [:create, :destroy, :index, :new]
 end

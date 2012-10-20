@@ -1,7 +1,7 @@
 <form action="<%= form.action %>" method="post">
   <%= token_tag(nil) %>
-  <label for="user_id">Owner ID:</label>
-  <select id="user_id" name="owner[id]">
+  <label for="owner_id">Owner ID:</label>
+  <select id="owner_id" name="owner[id]">
     <% form.all_owners.each do |owner| %>
       <option value="<%= owner[:value] %>"><%= owner[:name] %></user>
     <% end %>
