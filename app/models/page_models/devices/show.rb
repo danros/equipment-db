@@ -5,6 +5,10 @@ module PageModels
         @device = device
       end
 
+      def delete_device_path
+        "/devices/#{@device.id}"
+      end
+
       def edit_device_path
         "/devices/#{@device.id}/edit"
       end

@@ -1,9 +1,7 @@
 EquipmentDb::Application.routes.draw do
-  devise_for :users
+  root :to => 'home#show'
 
-  root      :to => 'home#show'
-
-  resources :devices, :only => [:create, :edit, :new, :show, :update] do
+  resources :devices, :only => [:create, :destroy, :edit, :new, :show, :update] do
     resources :maintainers, :only => [:create, :destroy, :new]
     resources :owners, :only => [:create, :destroy, :new]
   end
@@ -11,4 +9,5 @@ EquipmentDb::Application.routes.draw do
   resources :owners, :only => [:create, :destroy, :index, :new]
 
   resources :users, :only => [:index, :update]
+  devise_for :users
 end

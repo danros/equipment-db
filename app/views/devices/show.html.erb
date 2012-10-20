@@ -13,7 +13,7 @@
   <% end %>
 </p>
 <p><strong>Status:</strong> <%= @page.status %></p>
-<p><a class="btn btn-small" href="<%= @page.edit_device_path %>">Edit device details</a></p>
+<p><a class="btn btn-small" href="<%= @page.edit_device_path %>">Edit device details</a> <form action="<%= @page.delete_device_path %>" method="post"><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit" class="btn btn-small">Delete device</button></form></p>
 
 </div>
 <div class="span4">
@@ -21,7 +21,7 @@
 <% if @page.has_maintainers? %>
 <ul>
 <% @page.maintainers.each do |maintainer| %>
-   <li><%= maintainer[:name] %> <form action="<%= maintainer[:delete_path] %>" method="post" class="delete-form"><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit"><i class="icon-remove"></i></form></li>
+   <li><%= maintainer[:name] %> <form action="<%= maintainer[:delete_path] %>" method="post" class="delete-form"><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit"><i class="icon-remove"></i></button></form></li>
 <% end %>
 </ul>
 <% else %>

@@ -10,6 +10,12 @@ class DevicesController < ApplicationController
     # @page = PageModels::Device::Create.new
   end
 
+  def destroy
+    device = Device.find(params[:id])
+    device.destroy
+    redirect_to '/', :status => 303
+  end
+
   def edit
     device = Device.find(params[:id])
     @page = PageModels::Devices::Edit.new(device)
