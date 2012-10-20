@@ -18,14 +18,28 @@ class OwnersController < ApplicationController
 
   def destroy
     if params[:device_id]
-      device = Device.find(params[:device_id])
-      owner = Owner.find(params[:id])
-      device.owners.delete(owner)
-      redirect_to "/devices/#{params[:device_id]}", :status => 303 # TODO: Should this be part of the page model?
+      if params[:confirm] == 'y'
+        device = Device.find(params[:device_id])
+        owner = Owner.find(params[:id])
+        device.owners.delete(owner)
+        redirect_to "/devices/#{params[:device_id]}", :status => 303 # TODO: Should this be part of the page model?
+      elsif params[:confirm] == 'n'
+        redirect_to "/devices/#{params[:device_id]}", :status => 303 # TODO: Should this be part of the page model?
+      else
+        @page = PageModels::Common::ConfirmDelete.new("/devices/#{params[:device_id]}/owners/#{params[:id]}")
+        render 'common/confirm_delete'
+      end
     else
-      owner = Owner.find(params[:id])
-      owner.destroy if owner
-      redirect_to '/owners', :status => 303
+      if params[:confirm] == 'y'
+        owner = Owner.find(params[:id])
+        owner.destroy if owner
+        redirect_to '/owners', :status => 303
+      elsif params[:confirm] == 'n'
+        redirect_to '/owners', :status => 303
+      else
+        @page = PageModels::Common::ConfirmDelete.new("/owners/#{params[:id]}")
+        render 'common/confirm_delete'
+      end
     end
   end
 

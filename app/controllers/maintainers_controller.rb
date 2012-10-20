@@ -10,10 +10,17 @@ class MaintainersController < ApplicationController
   end
 
   def destroy
-    device = Device.find(params[:device_id])
-    user = User.find(params[:id])
-    device.maintainers.delete(user)
-    redirect_to "/devices/#{params[:device_id]}", :status => 303 # TODO: Should this be part of the page model?
+    if params[:confirm] == 'y'
+      device = Device.find(params[:device_id])
+      user = User.find(params[:id])
+      device.maintainers.delete(user)
+      redirect_to "/devices/#{params[:device_id]}", :status => 303 # TODO: Should this be part of the page model?
+    elsif params[:confirm] == 'n'
+      redirect_to "/devices/#{params[:device_id]}", :status => 303 # TODO: Should this be part of the page model?
+    else
+      @page = PageModels::Common::ConfirmDelete.new("/devices/#{params[:device_id]}/maintainers/#{params[:id]}")
+      render 'common/confirm_delete'
+    end
   end
 
   def new
