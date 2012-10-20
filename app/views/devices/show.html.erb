@@ -2,8 +2,10 @@
   <li><a href="/">All devices</a></li><span class="divider">/</span>
   <li class="active"><%= @page.name %></li>
 </ul>
+<div class="row">
+  <div class="span8">
 <h1><%= @page.name %></h1>
-<p><strong>More information:</strong> 
+<p><strong>More information:</strong>
   <% if @page.reference_url %>
     <a href="<%= @page.reference_url %>"><%= @page.reference_url_text %></a>
   <% else %>
@@ -11,18 +13,33 @@
   <% end %>
 </p>
 <p><strong>Status:</strong> <%= @page.status %></p>
-<p><a class="btn" href="<%= @page.edit_device_path %>">Edit</a></p>
-<h2>Maintainers</h2>
-<p><a class="btn" href="<%= @page.new_maintainer_path %>">Add Maintainer</a></p>
+<p><a class="btn btn-small" href="<%= @page.edit_device_path %>">Edit device details</a></p>
+
+</div>
+<div class="span4">
+<h4>Maintainers</h4>
+<% if @page.has_maintainers? %>
 <ul>
 <% @page.maintainers.each do |maintainer| %>
-   <li><%= maintainer[:name] %> <form action="<%= maintainer[:delete_path] %>" method="post" ><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit" class="btn">(delete)</button></form></li>
+   <li><%= maintainer[:name] %> <form action="<%= maintainer[:delete_path] %>" method="post" class="delete-form"><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit"><i class="icon-remove"></i></form></li>
 <% end %>
 </ul>
-<h2>Owners</h2>
-<p><a class="btn" href="<%= @page.new_owner_path %>">Add Owner</a></p>
+<% else %>
+<p>There are no maintainers for this device</p>
+<% end %>
+<p><a class="btn btn-small" href="<%= @page.new_maintainer_path %>">Add Maintainer</a></p>
+
+<h4>Owners</h4>
+<% if @page.has_owners? %>
 <ul>
 <% @page.owners.each do |owner| %>
-   <li><%= owner[:name] %> <form action="<%= owner[:delete_path] %>" method="post" ><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit" class="btn">(delete)</button></form></li>
+   <li><%= owner[:name] %> <form action="<%= owner[:delete_path] %>" method="post" class="delete-form"><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit"><i class="icon-remove"></i></button></form></li>
+<% end %>
+<% else %>
+<p>There are no owners for this device</p>
 <% end %>
 </ul>
+<p><a class="btn btn-small" href="<%= @page.new_owner_path %>">Add Owner</a></p>
+
+</div>
+</div>

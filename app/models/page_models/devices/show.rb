@@ -9,8 +9,16 @@ module PageModels
         "/devices/#{@device.id}/edit"
       end
 
+      def has_maintainers?
+        maintainers.size > 0
+      end
+
+      def has_owners?
+        owners.size > 0
+      end
+
       def maintainers
-        @device.maintainers.map{|maintainer| {:name => maintainer.name, :delete_path => "/devices/#{@device.id}/maintainers/#{maintainer.id}"}}
+        @maintainers ||= @device.maintainers.map{|maintainer| {:name => maintainer.name, :delete_path => "/devices/#{@device.id}/maintainers/#{maintainer.id}"}}
       end
 
       def name
@@ -26,7 +34,7 @@ module PageModels
       end
 
       def owners
-        @device.owners.map{|owner| {:name => owner.name, :delete_path => "/devices/#{@device.id}/owners/#{owner.id}"}}
+        @owners ||= @device.owners.map{|owner| {:name => owner.name, :delete_path => "/devices/#{@device.id}/owners/#{owner.id}"}}
       end
 
       def reference_url
