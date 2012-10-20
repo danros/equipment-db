@@ -1,5 +1,6 @@
 class OwnersController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :require_authorized_user
 
   def create
     if params[:device_id]

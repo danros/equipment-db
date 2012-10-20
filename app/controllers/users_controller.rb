@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :require_authorized_user
 
   def index
     @page = PageModels::Users::Index.new
