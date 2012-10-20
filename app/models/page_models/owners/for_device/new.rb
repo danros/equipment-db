@@ -7,7 +7,7 @@ module PageModels
         end
 
         def form
-          Common::Form.new(@device_id)
+          PageModels::Owners::ForDevice::Common::Form.new(@device_id)
         end
       end
     end

@@ -3,7 +3,7 @@ module PageModels
     module Global
       class New
         def form
-          Common::Form.new
+          PageModels::Owners::Global::Common::Form.new
         end
       end
     end
