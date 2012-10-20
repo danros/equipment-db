@@ -1,6 +1,6 @@
-<h1>Index</h1>
-
-<a class="btn" href="<%= @page.new_owner_path %>">Add an owner</a>
+<h1>Device owners</h1>
+<p>These are all users registered to own devices in the system. To manage the owners for a specific device, see that device's page.</p>
+<a class="btn btn-small" href="<%= @page.new_owner_path %>">Add an owner</a>
 <table class="table">
   <thead>
     <tr>
@@ -14,7 +14,7 @@
       <tr>
        <td><%= owner[:name] %></td>
        <td><%= owner[:email] %></td>
-       <td><form action="<%= owner[:delete_path] %>" method="post" ><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit" class="btn">(delete)</button></form></td>
+       <td><form action="<%= owner[:delete_path] %>" method="post" ><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit" class="btn btn-small">Delete</button></form></td>
       </tr>
     <% end %>
   </tbody>
