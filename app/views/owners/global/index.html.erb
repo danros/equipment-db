@@ -1,0 +1,22 @@
+<h1>Index</h1>
+
+<a class="btn" href="<%= @page.new_owner_path %>">Add an owner</a>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Contact Email</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @page.all_owners.each do |owner| %>
+      <tr>
+       <td><%= owner[:name] %></td>
+       <td><%= owner[:email] %></td>
+       <td><form action="<%= owner[:delete_path] %>" method="post" ><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit" class="btn">(delete)</button></form></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

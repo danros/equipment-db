@@ -1,8 +1,10 @@
 module PageModels
-  module Global
-    class New
-      def form
-        PageModels::Owners::Common::Form.new
+  module Owners
+    module Global
+      class New
+        def form
+          Common::Form.new
+        end
       end
     end
   end

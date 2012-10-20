@@ -8,7 +8,10 @@ class OwnersController < ApplicationController
       device.owners << owner
       redirect_to "/devices/#{params[:device_id]}", :status => 303 # TODO: Should this be part of the page model?
     else
-      nil
+      owner = Owner.create(params[:owner])
+      if owner.valid?
+        redirect_to '/owners', :status => 303
+      end
     end
   end
 
@@ -19,12 +22,16 @@ class OwnersController < ApplicationController
       device.owners.delete(owner)
       redirect_to "/devices/#{params[:device_id]}", :status => 303 # TODO: Should this be part of the page model?
     else
-      nil
+      owner = Owner.find(params[:id])
+      owner.destroy if owner
+      redirect_to '/owners', :status => 303
     end
   end
 
   def index
     # This is only accessible in the root context
+    @page = PageModels::Owners::Global::Index.new
+    render :template => 'owners/global/index'
   end
 
   def new
