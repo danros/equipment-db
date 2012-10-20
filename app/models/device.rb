@@ -19,8 +19,8 @@ class Device < ActiveRecord::Base
 
   belongs_to :status
 
-  has_and_belongs_to_many :maintainers, :class_name => User, :join_table => :devices_maintainers, :dependent => :destroy
-  has_and_belongs_to_many :owners, :dependent => :destroy
+  has_and_belongs_to_many :maintainers, :class_name => User, :join_table => :devices_maintainers
+  has_and_belongs_to_many :owners
 
   after_save :deliver_status_change_email
 
