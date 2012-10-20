@@ -14,7 +14,7 @@ class CreateStatusesAndReferenceUrls < ActiveRecord::Migration
 
   def down
     drop_table :statuses
-    
+
     remove_column :devices, :status_id
     remove_column :devices, :reference_url
   end

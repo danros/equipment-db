@@ -1,0 +1,28 @@
+<h1>All users</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @page.all_users.each do |user| %>
+      <tr>
+       <td><%= user[:name] %></td>
+       <td><%= user[:email] %></td>
+       <td>
+         <% if user[:authorized] %>
+           <form action="<%= user[:update_path] %>" method="post" ><%= token_tag(nil) %><input type="hidden" name="_method" value="put"><input type="hidden" name="user[authorized]" value="false"><button type="submit" class="btn">Deauthorize</button></form>
+         <% else %>
+           <form action="<%= user[:update_path] %>" method="post" ><%= token_tag(nil) %><input type="hidden" name="_method" value="put"><input type="hidden" name="user[authorized]" value="true"><button type="submit" class="btn">Authorize</button></form></td>
+         <% end %>
+       </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

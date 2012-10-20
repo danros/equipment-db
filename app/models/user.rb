@@ -65,8 +65,25 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
 
   has_and_belongs_to_many :devices, :join_table => :devices_maintainers
+  has_and_belongs_to_many :roles
 
   def authenticate(password)
     self if self.valid_password?(password)
+  end
+
+  def authorized?
+    puts roles.inspect
+    r = roles.find_all_by_name("Authorized User").size > 0
+    puts r.inspect
+    r
+  end
+
+  def authorized=(value)
+    role = Role.find_by_name("Authorized User")
+    if(value && !authorized?)
+      roles << role
+    elsif(!value && authorized?)
+      roles.destroy(role)
+    end
   end
 end
