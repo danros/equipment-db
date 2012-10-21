@@ -1,0 +1,10 @@
+<form action="<%= form.action %>" method="post">
+  <%= token_tag(nil) %>
+  <label for="ticket_summary">Summary:</label>
+  <input type="text" id="ticket_summary" name="ticket[summary]">
+  <label for="ticket_details">Details:</label>
+  <textarea rows="5" id="ticket_details" name="ticket[details]"></textarea>
+  <input type="hidden" name="ticket[user_id]" value="<%= form.user_id %>">
+  <input type="hidden" name="ticket[ticket_status_id]" value="<%= form.ticket_status_id %>">
+  <p><button type="submit" class="btn">Submit</button></p>
+</form>
