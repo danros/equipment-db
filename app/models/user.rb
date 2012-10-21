@@ -64,6 +64,8 @@ class User < ActiveRecord::Base
 
   validates :password, presence: true, length: { minimum: 6 }
 
+  has_many :tickets
+
   has_and_belongs_to_many :devices, :join_table => :devices_maintainers
   has_and_belongs_to_many :roles
 

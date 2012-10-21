@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121020142200) do
+ActiveRecord::Schema.define(:version => 20121021125700) do
 
   create_table "asset_tags", :force => true do |t|
     t.string   "code"
@@ -62,6 +62,20 @@ ActiveRecord::Schema.define(:version => 20121020142200) do
   create_table "statuses", :force => true do |t|
     t.text    "name"
     t.integer "severity", :default => 0, :null => false
+  end
+
+  create_table "ticket_statuses", :force => true do |t|
+    t.text "name"
+  end
+
+  create_table "tickets", :force => true do |t|
+    t.text     "summary"
+    t.text     "details"
+    t.integer  "device_id"
+    t.integer  "user_id"
+    t.integer  "ticket_status_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "users", :force => true do |t|

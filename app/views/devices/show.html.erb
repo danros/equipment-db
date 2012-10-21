@@ -14,7 +14,19 @@
 </p>
 <p><strong>Status:</strong> <%= @page.status %></p>
 <p><a class="btn btn-small" href="<%= @page.edit_device_path %>">Edit device details</a> <form action="<%= @page.delete_device_path %>" method="post"><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit" class="btn btn-small">Delete device</button></form></p>
-
+<h4>Open tickets</h4>
+<% if @page.has_tickets? %>
+  <% @page.tickets.each do |ticket| %>
+    <h5><%= ticket[:summary] %></h5>
+    <p><%= ticket[:details] %></p>
+    <em>Opened by <%= ticket[:reported_by] %> at <%= ticket[:timestamp] %></em> - 
+    <form class="delete-form" action="<%= ticket[:update_path] %>" method="post" ><%= token_tag(nil) %><input type="hidden" name="_method" value="put"><input type="hidden" name="ticket[ticket_status_id]" value="<%= ticket[:resolved_id] %>"><button type="submit">(resolve)</button></form> - 
+    <form class="delete-form" action="<%= ticket[:update_path] %>" method="post" ><%= token_tag(nil) %><input type="hidden" name="_method" value="put"><input type="hidden" name="ticket[ticket_status_id]" value="<%= ticket[:invalid_id] %>"><button type="submit">(invalid)</button></form>
+      <% end %>
+<% else %>
+  <p>There are currently no tickets open against this device.</p>
+<% end %>
+<p><a class="btn btn-small" href="<%= @page.new_ticket_path %>">Open A Ticket</a></p>
 </div>
 <div class="span4">
 <h4>Maintainers</h4>

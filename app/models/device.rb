@@ -16,6 +16,7 @@ class Device < ActiveRecord::Base
   validates :name, presence: true
 
   has_many :asset_tags
+  has_many :tickets
 
   belongs_to :status
 

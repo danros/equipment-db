@@ -21,6 +21,10 @@ module PageModels
         owners.size > 0
       end
 
+      def has_tickets?
+        tickets.size > 0
+      end
+
       def maintainers
         @maintainers ||= @device.maintainers.map{|maintainer| {:name => maintainer.name, :delete_path => "/devices/#{@device.id}/maintainers/#{maintainer.id}"}}
       end
@@ -37,6 +41,10 @@ module PageModels
         "/devices/#{@device.id}/owners/new"
       end
 
+      def new_ticket_path
+        "/devices/#{@device.id}/tickets/new"
+      end
+
       def owners
         @owners ||= @device.owners.map{|owner| {:name => owner.name, :delete_path => "/devices/#{@device.id}/owners/#{owner.id}"}}
       end
@@ -51,6 +59,35 @@ module PageModels
 
       def status
         @device.status ? @device.status.name : '(not set)'
+      end
+
+      def tickets
+        @tickets ||=
+          begin
+            open_status = TicketStatus.find_by_name('open')
+            open_tickets = @device.tickets.where(:ticket_status_id => open_status.id)
+            open_tickets.map do |ticket|
+              {
+                :summary => ticket.summary,
+                :details => ticket.details,
+                :timestamp => ticket.created_at.to_s,
+                :reported_by => ticket.user.name,
+                :update_path => "/devices/#{@device.id}/tickets/#{ticket.id}",
+                :invalid_id => invalid_id,
+                :resolved_id => resolved_id
+              }
+            end
+          end
+      end
+
+      private
+
+      def invalid_id
+        @invalid_id ||= TicketStatus.find_by_name('invalid').id
+      end
+
+      def resolved_id
+        @resolved_id ||= TicketStatus.find_by_name('resolved').id
       end
     end
   end
