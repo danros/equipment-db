@@ -30,15 +30,6 @@ describe Owner do
     it { should_not be_valid }
   end
 
-  describe "when email is not unique" do
-    before do
-      owner_with_same_email = @owner.dup
-      owner_with_same_email.save
-    end
-
-    it { should_not be_valid }
-  end
-
   describe "when email is valid" do
     it "should be valid" do
       addresses = %w[ foo@example.com local_part@example.com
