@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106110939) do
+ActiveRecord::Schema.define(:version => 20130106112701) do
 
   create_table "asset_tags", :force => true do |t|
     t.string   "code"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20130106110939) do
     t.integer  "status_id"
     t.text     "reference_url"
     t.text     "asset_code"
+    t.text     "model"
   end
 
   create_table "devices_maintainers", :force => true do |t|

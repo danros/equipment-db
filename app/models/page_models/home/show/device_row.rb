@@ -30,6 +30,10 @@ module PageModels
           end
 	end
 
+        def model
+          @device.model
+        end
+
 	def name
 	  @device.name
 	end

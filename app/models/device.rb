@@ -11,7 +11,7 @@
 #
 
 class Device < ActiveRecord::Base
-  attr_accessible :name, :tag, :status_id, :reference_url, :asset_code
+  attr_accessible :name, :tag, :status_id, :reference_url, :asset_code, :model
 
   validates :name, presence: true
 

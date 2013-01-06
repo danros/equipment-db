@@ -5,6 +5,8 @@
   <% end %>
   <label for="device_name">Name:</label>
   <input type="text" id="device_name" name="device[name]" value="<%= form.name %>">
+  <label for="device_model">Make / model:</label>
+  <input type="text" id="device_model" name="device[model]" value="<%= form.model %>">
   <label for="device_status_id">Status:</label>
   <select id="device_status_id" name="device[status_id]">
     <% form.status_values.each do |v| %> 

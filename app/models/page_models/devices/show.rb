@@ -33,6 +33,10 @@ module PageModels
         @maintainers ||= @device.maintainers.map{|maintainer| {:name => maintainer.name, :delete_path => "/devices/#{@device.id}/maintainers/#{maintainer.id}"}}
       end
 
+      def model
+        @device.model
+      end
+
       def name
         @device.name
       end

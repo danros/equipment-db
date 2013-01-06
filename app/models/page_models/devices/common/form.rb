@@ -22,6 +22,10 @@ module PageModels
           @device && @device.asset_code
         end
 
+        def model
+          @device && @device.model
+        end
+
         def name
           @device && @device.name
         end
