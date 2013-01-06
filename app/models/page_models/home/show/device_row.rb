@@ -7,7 +7,7 @@ module PageModels
         end
 
         def asset_code
-          @device.asset_code || '(untagged)'
+          @device.asset_code.blank? ? '(untagged)' : @device.asset_code
         end
 
 	def emphasize_status
