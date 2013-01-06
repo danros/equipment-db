@@ -6,6 +6,10 @@ module PageModels
           @device = device
         end
 
+        def asset_code
+          @device.asset_code || '(untagged)'
+        end
+
 	def emphasize_status
           if @device.status && (@device.status.severity > Status::Severity::WARNING)
             true

@@ -5,6 +5,10 @@ module PageModels
         @device = device
       end
 
+      def asset_code
+        @device.asset_code || '(untagged)'
+      end
+
       def delete_device_path
         "/devices/#{@device.id}"
       end

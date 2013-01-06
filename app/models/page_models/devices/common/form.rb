@@ -18,6 +18,10 @@ module PageModels
 	  @device ? 'put' : 'post'
 	end 
 
+        def asset_code
+          @device && @device.asset_code
+        end
+
         def name
           @device && @device.name
         end
