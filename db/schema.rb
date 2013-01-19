@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106112701) do
+ActiveRecord::Schema.define(:version => 20130119150112) do
 
   create_table "asset_tags", :force => true do |t|
     t.string   "code"
@@ -23,6 +23,10 @@ ActiveRecord::Schema.define(:version => 20130106112701) do
 
   add_index "asset_tags", ["code"], :name => "index_asset_tags_on_code", :unique => true
 
+  create_table "categories", :force => true do |t|
+    t.text "name"
+  end
+
   create_table "devices", :force => true do |t|
     t.text     "name"
     t.datetime "created_at",    :null => false
@@ -31,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20130106112701) do
     t.text     "reference_url"
     t.text     "asset_code"
     t.text     "model"
+    t.integer  "category_id"
   end
 
   create_table "devices_maintainers", :force => true do |t|

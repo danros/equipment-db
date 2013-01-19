@@ -1,0 +1,20 @@
+<h1>Categories</h1>
+<p>These are categories of devices.</p>
+<a class="btn btn-small" href="/categories/new">Add a category</a>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @page.all_categories.each do |category| %>
+      <tr>
+       <td><%= category[:name] %></td>
+       <td><form action="<%= category[:delete_path] %>" method="post" ><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit" class="btn btn-small">Delete</button></form></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

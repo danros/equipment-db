@@ -18,6 +18,7 @@ class Device < ActiveRecord::Base
   has_many :asset_tags
   has_many :tickets
 
+  belongs_to :category
   belongs_to :status
 
   has_and_belongs_to_many :maintainers, :class_name => User, :join_table => :devices_maintainers
