@@ -3,7 +3,8 @@ class HomeController < ApplicationController
   before_filter :require_authorized_user
 
   def show
-    devices = Device.find(:all, :order => 'name')
-    @page = PageModels::Home::Show.new(devices)
+    categories = Category.find(:all, :order => 'name')
+    uncategorised_devices = Device.find(:all, :conditions => 'category_id is null or category_id = -1', :order => 'name')
+    @page = PageModels::Home::Show.new(categories, uncategorised_devices)
   end
 end

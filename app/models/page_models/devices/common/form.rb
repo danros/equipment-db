@@ -22,6 +22,14 @@ module PageModels
           @device && @device.asset_code
         end
 
+        def category_id
+          (@device && @device.category_id) || -1
+        end
+
+        def category_values
+          @category_values ||= Category.find(:all).map{|v| [v.name, v.id]} + [['(no category)', -1]]
+        end
+
         def model
           @device && @device.model
         end

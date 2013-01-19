@@ -9,6 +9,14 @@ module PageModels
         @device.asset_code.blank? ? '(untagged)' : @device.asset_code
       end
 
+      def category
+        if @device.category
+          @device.category.name
+        else
+          '(no category)'
+        end
+      end
+
       def delete_device_path
         "/devices/#{@device.id}"
       end
