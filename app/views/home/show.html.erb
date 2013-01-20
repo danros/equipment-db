@@ -16,19 +16,16 @@
     </tr>
   </thead>
   <tbody>
-
-<% @page.sections.each do |section| %>
-<tr>
-  <td colspan="4"><%= section[:name] %></td>
-</tr>
-<% if section[:devices].size > 0 %>
-    <% section[:devices].each do |device_row| %>
-      <%= render :partial => 'device_row', :object => device_row %>
+    <% @page.sections.each do |section| %>
+      <% if section[:devices].size > 0 %>
+        <tr>
+          <td colspan="4"><em><%= section[:name] %></em></td>
+        </tr>
+        <% section[:devices].each do |device_row| %>
+          <%= render :partial => 'device_row', :object => device_row %>
+        <% end %>
+      <% end %>
     <% end %>
-<% else %>
-<p>No devices in category</p>
-<% end %>
-<% end %>
   </tbody>
 </table>
 
