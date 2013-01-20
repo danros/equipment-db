@@ -6,9 +6,6 @@
 
 <p><%= link_to "Add a device", new_device_path, class: 'btn btn-mini' %></p>
 
-<% @page.sections.each do |section| %>
-<h4><%= section[:name] %></h4>
-<% if section[:devices].size > 0 %>
 <table class="table">
   <thead>
     <tr>
@@ -19,15 +16,21 @@
     </tr>
   </thead>
   <tbody>
+
+<% @page.sections.each do |section| %>
+<tr>
+  <td colspan="4"><%= section[:name] %></td>
+</tr>
+<% if section[:devices].size > 0 %>
     <% section[:devices].each do |device_row| %>
       <%= render :partial => 'device_row', :object => device_row %>
     <% end %>
-  </tbody>
-</table>
 <% else %>
 <p>No devices in category</p>
 <% end %>
 <% end %>
+  </tbody>
+</table>
 
 <h4>About this site</h4>
 <p>The source code for this site lives at <a href="https://github.com/Makespace/equipment-db">https://github.com/Makespace/equipment-db</a>. Please report bugs and make feature requests using the GitHub ‘issues’ system.</p>
