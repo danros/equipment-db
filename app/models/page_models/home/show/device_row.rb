@@ -45,6 +45,10 @@ module PageModels
 	def status
           @device.status ? @device.status.name : '(not set)'
 	end
+
+        def wiki_url
+          @device.reference_url
+        end
       end
     end
   end
