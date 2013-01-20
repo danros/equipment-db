@@ -1,5 +1,5 @@
 <tr<%=raw " class=\"#{device_row.highlight_style}\"" if device_row.highlight_style %>>
-  <td><a href="<%=device_row.path %>"><%=device_row.name %></a><%= raw " (<a href=\"#{device_row.wiki_url}\">wiki</a>)" if !device_row.wiki_url.blank? %></td>
+  <td><a href="<%=device_row.path %>"><%=device_row.name %></a></td>
   <td><%=device_row.model %></td>
   <td><%=device_row.asset_code %></td>
   <td>
@@ -8,5 +8,8 @@
     <% else %>
       <%=device_row.status %>
     <% end %>
+  </td>
+  <td>
+    <%= raw " <a href=\"#{device_row.wiki_url}\">wiki</a>" if !device_row.wiki_url.blank? %>
   </td>
 </tr>
