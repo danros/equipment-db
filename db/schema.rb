@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130119150112) do
+ActiveRecord::Schema.define(:version => 20130120155047) do
 
   create_table "asset_tags", :force => true do |t|
     t.string   "code"
