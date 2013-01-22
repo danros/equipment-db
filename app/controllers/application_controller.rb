@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def require_authorized_user_with_local_exception
+    logger.info "Remote IP is #{request.remote_ip}"
     return if request.remote_ip == '86.162.158.158'
     require_authorized_user
   end
