@@ -16,7 +16,7 @@ module PageModels
 
 	def method
 	  @device ? 'put' : 'post'
-	end 
+	end
 
         def asset_code
           @device && @device.asset_code
@@ -36,6 +36,10 @@ module PageModels
 
         def name
           @device && @device.name
+        end
+
+        def pat_date
+          @device && @device.pat_date.to_s
         end
 
 	def reference_url

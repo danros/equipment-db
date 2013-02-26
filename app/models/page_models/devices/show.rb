@@ -65,6 +65,10 @@ module PageModels
         @owners ||= @device.owners.map{|owner| {:name => owner.name, :delete_path => "/devices/#{@device.id}/owners/#{owner.id}"}}
       end
 
+      def pat_date
+        @device.pat_date ? @device.pat_date.to_s : '(not set)'
+      end
+
       def reference_url
         @device.reference_url.blank? ? nil : @device.reference_url
       end
