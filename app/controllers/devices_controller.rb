@@ -1,6 +1,6 @@
 class DevicesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :require_authorized_user
+  before_filter :require_authorized_user, :except => [:show]
 
   def create
     device = Device.create(params[:device])
