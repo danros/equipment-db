@@ -51,7 +51,7 @@ module PageModels
         end
 
         def training_category_rgb
-          @device.training_category ? @device.training_category.rgb : '000000'
+          @device.training_category ? @device.training_category.rgb : 'ffffff'
         end
 
         def wiki_url

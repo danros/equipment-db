@@ -9,7 +9,7 @@
       <%=device_row.status %>
     <% end %>
   </td>
-  <td><span style="color:#<%=device_row.training_category_rgb %>"><%=device_row.training_category %></span></td>
+  <td><span style="background-color:#<%=device_row.training_category_rgb %>"><%=device_row.training_category %></span></td>
   <td>
     <%= raw " <a href=\"#{device_row.wiki_url}\">wiki</a>" if !device_row.wiki_url.blank? %>
   </td>
