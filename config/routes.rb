@@ -13,4 +13,6 @@ EquipmentDb::Application.routes.draw do
 
   resources :users, :only => [:index, :update]
   devise_for :users
+
+  resources :wiki_pages, :only => [:show]
 end
