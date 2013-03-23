@@ -100,6 +100,14 @@ module PageModels
           end
       end
 
+      def training_category
+        @device.training_category ? @device.training_category.name : '(not set)'
+      end
+
+      def training_category_rgb
+        @device.training_category ? @device.training_category.rgb : '000000'
+      end
+
       private
 
       def invalid_id

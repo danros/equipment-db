@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 <h1>All Makespace Equipment</h1>
 
 <table class="table">
@@ -7,6 +8,7 @@
       <th>Make / Model</th>
       <th>Asset Code</th>
       <th>Status</th>
+      <th>Training Category</th>
       <th>Wiki Link</th>
     </tr>
   </thead>
@@ -14,7 +16,7 @@
     <% @page.sections.each do |section| %>
       <% if section[:devices].size > 0 %>
         <tr>
-          <td colspan="5"><em><%= section[:name] %></em></td>
+          <td colspan="6"><em><%= section[:name] %></em></td>
         </tr>
         <% section[:devices].each do |device_row| %>
           <%= render :partial => 'device_row', :object => device_row %>

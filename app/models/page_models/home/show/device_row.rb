@@ -46,6 +46,14 @@ module PageModels
           @device.status ? @device.status.name : '(not set)'
 	end
 
+        def training_category
+          @device.training_category ? @device.training_category.name : '(not set)'
+        end
+
+        def training_category_rgb
+          @device.training_category ? @device.training_category.rgb : '000000'
+        end
+
         def wiki_url
           @device.reference_url
         end

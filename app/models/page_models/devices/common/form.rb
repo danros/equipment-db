@@ -53,6 +53,14 @@ module PageModels
         def status_values
           @status_values ||= Status.find(:all).map{|v| [v.name, v.id]}
         end
+
+        def training_category_id
+          (@device && @device.training_category_id) || -1
+        end
+
+        def training_category_values
+          @training_category_values ||= TrainingCategory.find(:all).map{|v| [v.name, v.id]} + [['(no category)', -1]]
+        end
       end
     end
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130226202319) do
+ActiveRecord::Schema.define(:version => 20130323212050) do
 
   create_table "asset_tags", :force => true do |t|
     t.string   "code"
@@ -29,14 +29,15 @@ ActiveRecord::Schema.define(:version => 20130226202319) do
 
   create_table "devices", :force => true do |t|
     t.text     "name"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.integer  "status_id"
     t.text     "reference_url"
     t.text     "asset_code"
     t.text     "model"
     t.integer  "category_id"
     t.date     "pat_date"
+    t.integer  "training_category_id"
   end
 
   create_table "devices_maintainers", :force => true do |t|
@@ -82,6 +83,11 @@ ActiveRecord::Schema.define(:version => 20130226202319) do
     t.integer  "ticket_status_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "training_categories", :force => true do |t|
+    t.text "name"
+    t.text "rgb"
   end
 
   create_table "users", :force => true do |t|

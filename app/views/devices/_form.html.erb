@@ -19,6 +19,12 @@
       <option value="<%= v[1] %>"<%= ' selected="selected"' if v[1] == form.category_id %>><%= v[0] %></option>
     <% end %>
   </select>
+  <label for="device_training_category_id">Training Category:</label>
+  <select id="device_training_category_id" name="device[training_category_id]">
+    <% form.training_category_values.each do |v| %> 
+      <option value="<%= v[1] %>"<%= ' selected="selected"' if v[1] == form.training_category_id %>><%= v[0] %></option>
+    <% end %>
+  </select>
   <label for="device_reference_url">Reference URL:</label>
   <input type="text" id="device_reference_url" name="device[reference_url]" value="<%= form.reference_url %>">
   <span class="help-block">Please create a page on the Makespace wiki for the device and reference it here.</span>

@@ -11,7 +11,7 @@
 #
 
 class Device < ActiveRecord::Base
-  attr_accessible :name, :tag, :status_id, :reference_url, :asset_code, :model, :category_id, :pat_date
+  attr_accessible :name, :tag, :status_id, :reference_url, :asset_code, :model, :category_id, :pat_date, :training_category_id
 
   validates :name, presence: true
 
@@ -20,6 +20,7 @@ class Device < ActiveRecord::Base
 
   belongs_to :category
   belongs_to :status
+  belongs_to :training_category
 
   has_and_belongs_to_many :maintainers, :class_name => User, :join_table => :devices_maintainers
   has_and_belongs_to_many :owners
