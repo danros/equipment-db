@@ -19,6 +19,11 @@
 </p>
 <p><strong>Status:</strong> <%= @page.status %></p>
 <p><a class="btn btn-small" href="<%= @page.edit_device_path %>">Edit device details</a> <form action="<%= @page.delete_device_path %>" method="post"><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit" class="btn btn-small">Delete device</button></form></p>
+<h4>Accounting information</h4>
+<p><strong>Minor item?:</strong> <%= @page.accounting_information[:minor_item] %></p>
+<p><strong>Provenance:</strong> <%= @page.accounting_information[:provenance] %></p>
+<p><strong>Date acquired:</strong> <%= @page.accounting_information[:date_acquired] && @page.accounting_information[:date_acquired].strftime('%Y-%m-%d') %></p>
+<p><strong>Value when acquired:</strong> <%= @page.accounting_information[:value_when_acquired] %></p>
 <h4>Open tickets</h4>
 <% if @page.has_tickets? %>
   <% @page.tickets.each do |ticket| %>

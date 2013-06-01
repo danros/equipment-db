@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130323212050) do
+ActiveRecord::Schema.define(:version => 20130601190145) do
 
   create_table "asset_tags", :force => true do |t|
     t.string   "code"
@@ -38,6 +38,10 @@ ActiveRecord::Schema.define(:version => 20130323212050) do
     t.integer  "category_id"
     t.date     "pat_date"
     t.integer  "training_category_id"
+    t.integer  "provenance_id"
+    t.date     "date_acquired"
+    t.float    "value_when_acquired"
+    t.boolean  "minor_item"
   end
 
   create_table "devices_maintainers", :force => true do |t|
@@ -55,6 +59,10 @@ ActiveRecord::Schema.define(:version => 20130323212050) do
     t.string   "email"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "provenances", :force => true do |t|
+    t.text "name"
   end
 
   create_table "roles", :force => true do |t|

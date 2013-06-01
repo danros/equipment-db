@@ -5,6 +5,15 @@ module PageModels
         @device = device
       end
 
+      def accounting_information
+        @accounting_information ||= {
+          :minor_item => @device.minor_item?,
+          :provenance => @device.provenance && @device.provenance.name,
+          :date_acquired => @device.date_acquired,
+          :value_when_acquired => @device.value_when_acquired
+        }
+      end
+
       def asset_code
         @device.asset_code.blank? ? '(untagged)' : @device.asset_code
       end

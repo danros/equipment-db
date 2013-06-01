@@ -39,6 +39,7 @@ class DevicesController < ApplicationController
 
   def update
     device = Device.find(params[:id])
+    params[:device][:minor_item] ||= '0'
     device.update_attributes(params[:device])
     if device.valid?
       redirect_to device_path(device), :status => 303

@@ -61,6 +61,26 @@ module PageModels
         def training_category_values
           @training_category_values ||= TrainingCategory.find(:all).map{|v| [v.name, v.id]} + [['(no category)', -1]]
         end
+
+        def minor_item?
+          @device && @device.minor_item?
+        end
+
+        def provenance_id
+          (@device && @device.provenance_id) || -1
+        end
+
+        def provenance_values
+          @provenance_values ||= Provenance.find(:all).map{|v| [v.name, v.id]} + [['(not recorded)', -1]]
+        end
+
+        def date_acquired
+          @device && @device.date_acquired
+        end
+
+        def value_when_acquired
+          @device && @device.value_when_acquired
+        end
       end
     end
   end

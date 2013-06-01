@@ -11,7 +11,7 @@
 #
 
 class Device < ActiveRecord::Base
-  attr_accessible :name, :tag, :status_id, :reference_url, :asset_code, :model, :category_id, :pat_date, :training_category_id
+  attr_accessible :name, :tag, :status_id, :reference_url, :asset_code, :model, :category_id, :pat_date, :training_category_id, :provenance_id, :date_acquired, :value_when_acquired, :minor_item
 
   validates :name, presence: true
 
@@ -19,6 +19,7 @@ class Device < ActiveRecord::Base
   has_many :tickets
 
   belongs_to :category
+  belongs_to :provenance
   belongs_to :status
   belongs_to :training_category
 
