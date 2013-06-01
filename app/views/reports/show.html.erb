@@ -1,0 +1,14 @@
+<table class="table">
+  <thead>
+    <tr>
+      <%= raw @page.headings.map{|h| "<th>#{h}</th>"}.join('') %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @page.rows.each do |row| %>
+      <tr>
+        <%= raw row.map{|h| "<td>#{h}</td>"}.join('') %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

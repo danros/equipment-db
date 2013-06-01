@@ -11,6 +11,8 @@ EquipmentDb::Application.routes.draw do
 
   resources :owners, :only => [:create, :destroy, :index, :new]
 
+  resources :reports, :only => [:show]
+
   resources :users, :only => [:index, :update]
   devise_for :users
 
