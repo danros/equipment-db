@@ -6,7 +6,7 @@ module PageModels
       end
 
       def form
-        PageModels::Devices::Common::Form.new(@device)
+        PageModels::Devices::Common::EditForm.new(@device)
       end
     end
   end

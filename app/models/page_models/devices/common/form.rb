@@ -7,23 +7,19 @@ module PageModels
         end
 
         def action
-          @device ? "/devices/#{@device.id}" : '/devices'
-        end
-
-        def initialize(device = nil)
-          @device = device
+          '/devices'
         end
 
 	def method
-	  @device ? 'put' : 'post'
+          'post'
 	end
 
         def asset_code
-          @device && @device.asset_code
+          nil
         end
 
         def category_id
-          (@device && @device.category_id) || -1
+          -1
         end
 
         def category_values
@@ -31,23 +27,23 @@ module PageModels
         end
 
         def model
-          @device && @device.model
+          nil
         end
 
         def name
-          @device && @device.name
+          nil
         end
 
         def pat_date
-          @device && @device.pat_date.to_s
+          nil
         end
 
 	def reference_url
-	  @device && @device.reference_url
+          nil
 	end
 
         def status_id
-          @device && @device.status_id
+          nil
         end
 
         def status_values
@@ -55,7 +51,7 @@ module PageModels
         end
 
         def training_category_id
-          (@device && @device.training_category_id) || -1
+          -1
         end
 
         def training_category_values
@@ -63,11 +59,11 @@ module PageModels
         end
 
         def minor_item?
-          @device && @device.minor_item?
+          nil
         end
 
         def provenance_id
-          (@device && @device.provenance_id) || -1
+          -1
         end
 
         def provenance_values
@@ -75,11 +71,11 @@ module PageModels
         end
 
         def date_acquired
-          @device && @device.date_acquired
+          nil
         end
 
         def value_when_acquired
-          @device && @device.value_when_acquired
+          nil
         end
       end
     end
