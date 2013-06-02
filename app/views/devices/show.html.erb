@@ -5,19 +5,15 @@
 <div class="row">
   <div class="span12">
     <div class="<%= @page.well_classes %>">
-<p><strong>Asset code:</strong> <%= @page.asset_code %></p>
+      <p><%= @page.category_and_asset_code %></p>
       <h1><%= @page.name %></h1>
       <p><strong>Make / model:</strong> <%= @page.model %></p>
-      <p><strong>Category:</strong> <%= @page.category %></p>
-      <p><strong>Training Category:</strong> <span style="background-color:#<%= @page.training_category_rgb %>"><%= @page.training_category %></span></p>
-      <p><strong>More information:</strong>
-        <% if @page.reference_url %>
-          <a href="<%= @page.reference_url %>"><%= @page.reference_url_text %></a>
-        <% else %>
-          <%= @page.reference_url_text %>
-        <% end %>
-      </p>
+      <p><strong>Training requiements:</strong> <%= raw @page.training_category %></p>
       <p><strong>Status:</strong> <%= @page.status %></p>
+      <% if @page.reference_url %>
+        <p><strong>More information:</strong> <a href="<%= @page.reference_url %>"><%= @page.reference_url %></a></p>
+      <% end %>
+  
       <p><a class="btn btn-small" href="<%= @page.edit_device_path %>">Edit device details</a> <form action="<%= @page.delete_device_path %>" method="post"><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit" class="btn btn-small">Delete device</button></form></p>
     </div>
 

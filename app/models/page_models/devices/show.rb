@@ -14,15 +14,12 @@ module PageModels
         }
       end
 
-      def asset_code
-        @device.asset_code.blank? ? '(untagged)' : @device.asset_code
-      end
-
-      def category
+      def category_and_asset_code
+        asset_code = @device.asset_code.blank? ? 'No asset tag' : "Asset #{@device.asset_code}"
         if @device.category
-          @device.category.name
+          "#{@device.category.name} / #{asset_code}"
         else
-          '(no category)'
+          asset_code
         end
       end
 
@@ -59,7 +56,7 @@ module PageModels
       end
 
       def model
-        @device.model
+        @device.model.blank? ? 'Not recorded' : @device.model
       end
 
       def name
@@ -90,10 +87,6 @@ module PageModels
         @device.reference_url.blank? ? nil : @device.reference_url
       end
 
-      def reference_url_text
-        @device.reference_url.blank? ? '(not set)' : @device.reference_url
-      end
-
       def status
         @device.status ? @device.status.name : '(not set)'
       end
@@ -118,7 +111,15 @@ module PageModels
       end
 
       def training_category
-        @device.training_category ? @device.training_category.name : '(not set)'
+        return 'This equipment doesn\'t yet have any saftey information, which most likely means that it shouldn\'t be used. If you know that this isn\'t the case, please update the equipment database.' unless @device.training_category
+        case @device.training_category.name
+        when 'Red'
+          "This is a <b style=\"color: \##{@device.training_category.rgb}\">RED</b> item. An induction session is required before using the equipment for safety reasons and to prevent unnecessary damage."
+        when 'Yellow'
+          "This is a <b style=\"color: \##{@device.training_category.rgb}\">YELLOW</b> item. An induction session is not required, but is available if you are unsure about how to safely use the equipment. Before use, please make sure you've read the appropriate documentation and are confident that you understand what you're doing."
+        when 'Green'
+          "This is a <b style=\"color: \##{@device.training_category.rgb}\">GREEN</b> item. It is considered relatively safe and it is difficult to accidentally damage the equipment. However, please use the item carefully and consider the safety of yourself and others. If you are unsure how to do what you would like to do, please ask someone else for help."
+        end
       end
 
       def training_category_rgb
