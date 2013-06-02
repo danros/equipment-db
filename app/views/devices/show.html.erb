@@ -13,34 +13,38 @@
       <% if @page.reference_url %>
         <p><strong>More information:</strong> <a href="<%= @page.reference_url %>"><%= @page.reference_url %></a></p>
       <% end %>
-  
-      <p><a class="btn btn-small" href="<%= @page.edit_device_path %>">Edit device details</a> <form action="<%= @page.delete_device_path %>" method="post"><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit" class="btn btn-small">Delete device</button></form></p>
+      <% if current_user && current_user.authorized? %>
+        <p><a class="btn btn-small" href="<%= @page.edit_device_path %>">Edit device details</a> <form action="<%= @page.delete_device_path %>" method="post"><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit" class="btn btn-small">Delete device</button></form></p>
+      <% end %>
     </div>
+    <% if current_user && current_user.authorized? %>
+      <h3>Maintenance</h3>
+      <p><strong>PAT test due:</strong> <%= @page.pat_date %></p>
+      <p><strong>Device owners:</strong></p>
+      <% if @page.has_maintainers? %>
+        <ul>
+          <% @page.maintainers.each do |maintainer| %>
+            <li><%= maintainer[:name] %> <form action="<%= maintainer[:delete_path] %>" method="post" class="delete-form"><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit"><i class="icon-remove"></i></button></form></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>There are no device owners for this device</p>
+      <% end %>
+      <p><a class="btn btn-small" href="<%= @page.new_maintainer_path %>">Add Maintainer</a></p>
 
-    <h3>Maintenance</h3>
-    <p><strong>PAT test due:</strong> <%= @page.pat_date %></p>
-    <p><strong>Device owners:</strong></p>
-    <% if @page.has_maintainers? %>
-      <ul>
-        <% @page.maintainers.each do |maintainer| %>
-          <li><%= maintainer[:name] %> <form action="<%= maintainer[:delete_path] %>" method="post" class="delete-form"><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit"><i class="icon-remove"></i></button></form></li>
-        <% end %>
-      </ul>
+      <h3>Accounting information</h3>
+      <p><strong>Minor item?:</strong> <%= @page.accounting_information[:minor_item] %></p>
+      <p><strong>Provenance:</strong> <%= @page.accounting_information[:provenance] %></p>
+      <p><strong>Date acquired:</strong> <%= @page.accounting_information[:date_acquired] && @page.accounting_information[:date_acquired].strftime('%Y-%m-%d') %></p>
+      <p><strong>Value when acquired:</strong> <%= @page.accounting_information[:value_when_acquired] %></p>
+      <% if @page.has_owners? %>
+        <p>Item belongs to <%= @page.owners.map{|o| o[:name]}.join(', ') %></p>
+      <% else %>
+        <p>Legal ownership of item not recorded.</p>
+        <p><a class="btn btn-small" href="<%= @page.new_owner_path %>">Add Owner</a></p>
+      <% end %>
     <% else %>
-      <p>There are no device owners for this device</p>
-    <% end %>
-    <p><a class="btn btn-small" href="<%= @page.new_maintainer_path %>">Add Maintainer</a></p>
-
-    <h3>Accounting information</h3>
-    <p><strong>Minor item?:</strong> <%= @page.accounting_information[:minor_item] %></p>
-    <p><strong>Provenance:</strong> <%= @page.accounting_information[:provenance] %></p>
-    <p><strong>Date acquired:</strong> <%= @page.accounting_information[:date_acquired] && @page.accounting_information[:date_acquired].strftime('%Y-%m-%d') %></p>
-    <p><strong>Value when acquired:</strong> <%= @page.accounting_information[:value_when_acquired] %></p>
-    <% if @page.has_owners? %>
-      <p>Item belongs to <%= @page.owners.map{|o| o[:name]}.join(', ') %></p>
-    <% else %>
-      <p>Legal ownership of item not recorded.</p>
-      <p><a class="btn btn-small" href="<%= @page.new_owner_path %>">Add Owner</a></p>
+      <p>Please <%= link_to "sign in", new_user_session_path %> to view full details or edit this informatio.</p>
     <% end %>
   </div>
 </div>
