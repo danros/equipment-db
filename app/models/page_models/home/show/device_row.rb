@@ -49,7 +49,7 @@ module PageModels
         def training_category
           case @device.training_category.name
           when 'Green'
-            "<i class=\"icon-ok-cirle\" style=\"background-color:\##{training_category_rgb}\"></i> Green</td>"
+            "<i class=\"icon-ok-circle\" style=\"background-color:\##{training_category_rgb}\"></i> Green</td>"
           when 'Yellow'
             "<i class=\"icon-warning-sign\" style=\"background-color:\##{training_category_rgb}\"></i> Yellow</td>"
           when 'Red'
