@@ -26,6 +26,14 @@ module PageModels
         end
       end
 
+      def well_classes
+        if @device.training_category
+          "well training-#{@device.training_category.name.downcase}"
+        else
+          'well'
+        end
+      end
+
       def delete_device_path
         "/devices/#{@device.id}"
       end

@@ -3,65 +3,48 @@
   <li class="active"><%= @page.name %></li>
 </ul>
 <div class="row">
-  <div class="span8">
-<h1><%= @page.name %></h1>
-<p><strong>Make / model:</strong> <%= @page.model %></p>
-<p><strong>Category:</strong> <%= @page.category %></p>
-<p><strong>Training Category:</strong> <span style="background-color:#<%= @page.training_category_rgb %>"><%= @page.training_category %></span></p>
+  <div class="span12">
+    <div class="<%= @page.well_classes %>">
 <p><strong>Asset code:</strong> <%= @page.asset_code %></p>
-<p><strong>PAT test due:</strong> <%= @page.pat_date %></p>
-<p><strong>More information:</strong>
-  <% if @page.reference_url %>
-    <a href="<%= @page.reference_url %>"><%= @page.reference_url_text %></a>
-  <% else %>
-    <%= @page.reference_url_text %>
-  <% end %>
-</p>
-<p><strong>Status:</strong> <%= @page.status %></p>
-<p><a class="btn btn-small" href="<%= @page.edit_device_path %>">Edit device details</a> <form action="<%= @page.delete_device_path %>" method="post"><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit" class="btn btn-small">Delete device</button></form></p>
-<h4>Accounting information</h4>
-<p><strong>Minor item?:</strong> <%= @page.accounting_information[:minor_item] %></p>
-<p><strong>Provenance:</strong> <%= @page.accounting_information[:provenance] %></p>
-<p><strong>Date acquired:</strong> <%= @page.accounting_information[:date_acquired] && @page.accounting_information[:date_acquired].strftime('%Y-%m-%d') %></p>
-<p><strong>Value when acquired:</strong> <%= @page.accounting_information[:value_when_acquired] %></p>
-<h4>Open tickets</h4>
-<% if @page.has_tickets? %>
-  <% @page.tickets.each do |ticket| %>
-    <h5><%= ticket[:summary] %></h5>
-    <p><%= ticket[:details] %></p>
-    <em>Opened by <%= ticket[:reported_by] %> at <%= ticket[:timestamp] %></em> - 
-    <form class="delete-form" action="<%= ticket[:update_path] %>" method="post" ><%= token_tag(nil) %><input type="hidden" name="_method" value="put"><input type="hidden" name="ticket[ticket_status_id]" value="<%= ticket[:resolved_id] %>"><button type="submit">(resolve)</button></form> - 
-    <form class="delete-form" action="<%= ticket[:update_path] %>" method="post" ><%= token_tag(nil) %><input type="hidden" name="_method" value="put"><input type="hidden" name="ticket[ticket_status_id]" value="<%= ticket[:invalid_id] %>"><button type="submit">(invalid)</button></form>
-      <% end %>
-<% else %>
-  <p>There are currently no tickets open against this device.</p>
-<% end %>
-<p><a class="btn btn-small" href="<%= @page.new_ticket_path %>">Open A Ticket</a></p>
-</div>
-<div class="span4">
-<h4>Maintainers</h4>
-<% if @page.has_maintainers? %>
-<ul>
-<% @page.maintainers.each do |maintainer| %>
-   <li><%= maintainer[:name] %> <form action="<%= maintainer[:delete_path] %>" method="post" class="delete-form"><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit"><i class="icon-remove"></i></button></form></li>
-<% end %>
-</ul>
-<% else %>
-<p>There are no maintainers for this device</p>
-<% end %>
-<p><a class="btn btn-small" href="<%= @page.new_maintainer_path %>">Add Maintainer</a></p>
+      <h1><%= @page.name %></h1>
+      <p><strong>Make / model:</strong> <%= @page.model %></p>
+      <p><strong>Category:</strong> <%= @page.category %></p>
+      <p><strong>Training Category:</strong> <span style="background-color:#<%= @page.training_category_rgb %>"><%= @page.training_category %></span></p>
+      <p><strong>More information:</strong>
+        <% if @page.reference_url %>
+          <a href="<%= @page.reference_url %>"><%= @page.reference_url_text %></a>
+        <% else %>
+          <%= @page.reference_url_text %>
+        <% end %>
+      </p>
+      <p><strong>Status:</strong> <%= @page.status %></p>
+      <p><a class="btn btn-small" href="<%= @page.edit_device_path %>">Edit device details</a> <form action="<%= @page.delete_device_path %>" method="post"><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit" class="btn btn-small">Delete device</button></form></p>
+    </div>
 
-<h4>Owners</h4>
-<% if @page.has_owners? %>
-<ul>
-<% @page.owners.each do |owner| %>
-   <li><%= owner[:name] %> <form action="<%= owner[:delete_path] %>" method="post" class="delete-form"><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit"><i class="icon-remove"></i></button></form></li>
-<% end %>
-<% else %>
-<p>There are no owners for this device</p>
-<% end %>
-</ul>
-<p><a class="btn btn-small" href="<%= @page.new_owner_path %>">Add Owner</a></p>
+    <h3>Maintenance</h3>
+    <p><strong>PAT test due:</strong> <%= @page.pat_date %></p>
+    <p><strong>Device owners:</strong></p>
+    <% if @page.has_maintainers? %>
+      <ul>
+        <% @page.maintainers.each do |maintainer| %>
+          <li><%= maintainer[:name] %> <form action="<%= maintainer[:delete_path] %>" method="post" class="delete-form"><%= token_tag(nil) %><input type="hidden" name="_method" value="delete"><button type="submit"><i class="icon-remove"></i></button></form></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>There are no device owners for this device</p>
+    <% end %>
+    <p><a class="btn btn-small" href="<%= @page.new_maintainer_path %>">Add Maintainer</a></p>
 
-</div>
+    <h3>Accounting information</h3>
+    <p><strong>Minor item?:</strong> <%= @page.accounting_information[:minor_item] %></p>
+    <p><strong>Provenance:</strong> <%= @page.accounting_information[:provenance] %></p>
+    <p><strong>Date acquired:</strong> <%= @page.accounting_information[:date_acquired] && @page.accounting_information[:date_acquired].strftime('%Y-%m-%d') %></p>
+    <p><strong>Value when acquired:</strong> <%= @page.accounting_information[:value_when_acquired] %></p>
+    <% if @page.has_owners? %>
+      <p>Item belongs to <%= @page.owners.map{|o| o[:name]}.join(', ') %></p>
+    <% else %>
+      <p>Legal ownership of item not recorded.</p>
+      <p><a class="btn btn-small" href="<%= @page.new_owner_path %>">Add Owner</a></p>
+    <% end %>
+  </div>
 </div>
