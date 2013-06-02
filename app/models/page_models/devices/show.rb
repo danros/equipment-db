@@ -118,7 +118,7 @@ module PageModels
         when 'Yellow'
           "This is a <b style=\"color: goldenrod\">YELLOW</b> item. An induction session is not required, but is available if you are unsure about how to safely use the equipment. Before use, please make sure you've read the appropriate documentation and are confident that you understand what you're doing."
         when 'Green'
-          "This is a <b style=\"color: greed\">GREEN</b> item. It is considered relatively safe and it is difficult to accidentally damage the equipment. However, please use the item carefully and consider the safety of yourself and others. If you are unsure how to do what you would like to do, please ask someone else for help."
+          "This is a <b style=\"color: green\">GREEN</b> item. It is considered relatively safe and it is difficult to accidentally damage the equipment. However, please use the item carefully and consider the safety of yourself and others. If you are unsure how to do what you would like to do, please ask someone else for help."
         end
       end
 
