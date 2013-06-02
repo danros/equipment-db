@@ -47,7 +47,14 @@ module PageModels
 	end
 
         def training_category
-          @device.training_category ? @device.training_category.name : '(not set)'
+          case @device.training_category.name
+          when 'Green'
+            "<i class=\"icon-ok-cirle\" style=\"background-color:\##{training_category_rgb}\"></i> Green</td>"
+          when 'Yellow'
+            "<i class=\"icon-warning-sign\" style=\"background-color:\##{training_category_rgb}\"></i> Yellow</td>"
+          when 'Red'
+            "<i class=\"icon-warning-sign\" style=\"background-color:\##{training_category_rgb}\"></i> Red</td>"
+          end
         end
 
         def training_category_rgb
