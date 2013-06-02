@@ -1,50 +1,130 @@
-<form action="<%= form.action %>" method="post">
+<form action="<%= form.action %>" method="post" class="form-horizontal">
   <%= token_tag(nil) %>
   <% if form.method == 'put' %>
     <input type="hidden" name="_method" value="put">
   <% end %>
-  <label for="device_name">Name:</label>
-  <input type="text" id="device_name" name="device[name]" value="<%= form.name %>">
-  <label for="device_model">Make / model:</label>
-  <input type="text" id="device_model" name="device[model]" value="<%= form.model %>">
-  <label for="device_status_id">Status:</label>
-  <select id="device_status_id" name="device[status_id]">
-    <% form.status_values.each do |v| %>
-      <option value="<%= v[1] %>"<%= ' selected="selected"' if v[1] == form.status_id %>><%= v[0] %></option>
-    <% end %>
-  </select>
-  <label for="device_category_id">Category:</label>
-  <select id="device_category_id" name="device[category_id]">
-    <% form.category_values.each do |v| %>
-      <option value="<%= v[1] %>"<%= ' selected="selected"' if v[1] == form.category_id %>><%= v[0] %></option>
-    <% end %>
-  </select>
-  <label for="device_training_category_id">Training Category:</label>
-  <select id="device_training_category_id" name="device[training_category_id]">
-    <% form.training_category_values.each do |v| %>
-      <option value="<%= v[1] %>"<%= ' selected="selected"' if v[1] == form.training_category_id %>><%= v[0] %></option>
-    <% end %>
-  </select>
-  <label for="device_reference_url">Reference URL:</label>
-  <input type="text" id="device_reference_url" name="device[reference_url]" value="<%= form.reference_url %>">
-  <span class="help-block">Please create a page on the Makespace wiki for the device and reference it here.</span>
-  <label for="device_asset_code">Asset code:</label>
-  <input type="text" id="device_asset_code" name="device[asset_code]" value="<%= form.asset_code %>">
-  <label for="device_pat_date">PAT test due:</label>
-  <input type="date" id="device_pat_date" name="device[pat_date]" value="<%= form.pat_date %>">
 
-  <label for="device_minor_item">Minor item?:</label>
-  <input type="checkbox"<%= form.minor_item? ? ' checked="checked"' : '' %> name="device[minor_item]" value="1">
-  <label for="device_provenance_id">Provenance:</label>
-  <select id="device_provenance_id" name="device[provenance_id]">
-    <% form.provenance_values.each do |v| %>
-      <option value="<%= v[1] %>"<%= ' selected="selected"' if v[1] == form.provenance_id %>><%= v[0] %></option>
-    <% end %>
-  </select>
-  <label for="device_date_acquired">Date acquired:</label>
-  <input type="date" id="device_date_acquired" name="device[date_acquired]" value="<%= form.date_acquired %>">
-  <label for="device_value_when_acquired">Value when acquired:</label>
-  <input type="text" id="device_value_when_acquired" name="device[value_when_acquired]" value="<%= form.value_when_acquired %>">
+  <fieldset>
+    <legend>Basic Information</legend>
 
-  <p><button type="submit" class="btn">Submit</button><a class="btn" href="/">Cancel</a></p>
+    <div class="control-group">
+      <label class="control-label" for="device_name">Name:</label>
+      <div class="controls">
+        <input type="text" id="device_name" name="device[name]" value="<%= form.name %>">
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="device_model">Make and model:</label>
+      <div class="controls">
+        <input type="text" id="device_model" name="device[model]" value="<%= form.model %>">
+        <span class="help-block">Please be as precise as possible, including the manufacturer's name and the full model number.</span>
+      </div>
+    </div>
+
+     <div class="control-group">
+      <label class="control-label" for="device_category_id">Category:</label>
+      <div class="controls">
+        <select id="device_category_id" name="device[category_id]">
+          <% form.category_values.each do |v| %>
+            <option value="<%= v[1] %>"<%= ' selected="selected"' if v[1] == form.category_id %>><%= v[0] %></option>
+          <% end %>
+        </select>
+        <span class="help-block">Categories are used to structure the main equipment list. If none of the existing categories apply, you can add one <a href="/categories">here</a>.</span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="device_asset_code">Asset code:</label>
+      <div class="controls">
+        <input type="text" id="device_asset_code" name="device[asset_code]" value="<%= form.asset_code %>">
+        <span class="help-block">There should be a roll of sequentially numbered tags with barcodes in the space. Attach one of these to the item (somewhere where it will neither get in the way or be easily detached) and note the code here. Please include any leading zeros (i.e. 0005 rather than 5).</span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="device_training_category_id">Training Category:</label>
+      <div class="controls">
+        <select id="device_training_category_id" name="device[training_category_id]">
+          <% form.training_category_values.each do |v| %>
+            <option value="<%= v[1] %>"<%= ' selected="selected"' if v[1] == form.training_category_id %>><%= v[0] %></option>
+          <% end %>
+        </select>
+        <span class="help-block">See <a href="http://wiki.makespace.org/Equipment/ToolClasses" target="_blank">http://wiki.makespace.org/Equipment/ToolClasses</a> for information on the training categories.</span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="device_reference_url">Reference URL:</label>
+      <div class="controls">
+        <input type="text" id="device_reference_url" name="device[reference_url]" value="<%= form.reference_url %>">
+        <span class="help-block">Please create a page on the Makespace wiki for the device and reference it here. Smaller items can be combined into a single category page (e.g. glassmaking equipment, electronics workbench, etc.).</span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="device_status_id">Status:</label>
+      <div class="controls">
+        <select id="device_status_id" name="device[status_id]">
+          <% form.status_values.each do |v| %>
+            <option value="<%= v[1] %>"<%= ' selected="selected"' if v[1] == form.status_id %>><%= v[0] %></option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Safety and maintenance details</legend>
+
+    <div class="control-group">
+      <label class="control-label" for="device_pat_date">PAT test due:</label>
+      <div class="controls">
+        <input type="date" id="device_pat_date" name="device[pat_date]" value="<%= form.pat_date %>">
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Accounting information</legend>
+
+    <div class="control-group">
+      <label class="control-label" for="device_minor_item">Minor item?</label>
+      <div class="controls">
+        <input type="checkbox"<%= form.minor_item? ? ' checked="checked"' : '' %> name="device[minor_item]" value="1">
+        <span class="help-block">Minor items are items valued below &pound;250 at time of acquisition which are not tracked as assets for accouning purposes.</span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="device_date_acquired">Date acquired:</label>
+      <div class="controls">
+        <input type="date" id="device_date_acquired" name="device[date_acquired]" value="<%= form.date_acquired %>">
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="device_provenance_id">Provenance:</label>
+      <div class="controls">
+        <select id="device_provenance_id" name="device[provenance_id]">
+          <% form.provenance_values.each do |v| %>
+            <option value="<%= v[1] %>"<%= ' selected="selected"' if v[1] == form.provenance_id %>><%= v[0] %></option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="device_value_when_acquired">Value when acquired:</label>
+      <div class="controls">
+        &pound;&nbsp;<input type="text" id="device_value_when_acquired" name="device[value_when_acquired]" value="<%= form.value_when_acquired %>">
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="control-group">
+    <div class="controls">
+      <p><button type="submit" class="btn">Submit</button>&nbsp;<a class="btn" href="/">Cancel</a></p>
+    </div>
+  </div>
 </form>
