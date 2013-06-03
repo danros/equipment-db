@@ -47,6 +47,7 @@ module PageModels
 	end
 
         def training_category
+          return '(not set)' unless @device.training_category
           case @device.training_category.name
           when 'Green'
             "<i class=\"icon-ok-circle\" style=\"background-color:\##{training_category_rgb}\"></i> Green</td>"
